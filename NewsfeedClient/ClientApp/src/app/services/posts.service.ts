@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class PageService {
+export class PostsService {
 
   constructor(private http: HttpClient) { }
 
     getPosts() {
-        return this.http.get('/api/news/');      
+        return this.http.get('/api/posts/');      
     }
 
     getPost(id: number) {
-      return this.http.get('api/news/' + id);
+        return this.http.get('api/posts/' + id);
     }
 }
