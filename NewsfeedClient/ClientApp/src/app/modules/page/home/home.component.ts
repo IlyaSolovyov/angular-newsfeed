@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { Post } from '../../../models/post';
-import { PostsService } from '../../../services/posts.service';
+import { Post } from '../../../shared/models/post';
+import { PostsService } from '../../../shared/services/posts.service';
+
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'page-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
