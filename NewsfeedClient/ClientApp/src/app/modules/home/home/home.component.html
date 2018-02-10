@@ -1,0 +1,32 @@
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <mat-list-item routerLink="/home/newsfeed">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line>Newsfeed</h4>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/home/folders">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line>Folders</h4>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/home/friends">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line>Friends</h4>
+      </mat-list-item>
+
+      <mat-list-item routerLink="/home/settings">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line>Settings</h4>
+        </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
