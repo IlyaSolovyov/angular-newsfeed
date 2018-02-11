@@ -7,7 +7,7 @@ import { MaterialModule } from '../shared/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from '../modules/home/home.module';
 import { AccountModule } from '../modules/account/account.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PostsService } from '../shared/services/posts.service';
 
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     MaterialModule,
