@@ -7,7 +7,6 @@ import { MaterialModule } from '../shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from '../modules/home/home.module';
 import { AccountModule } from '../modules/account/account.module';
-import { NewsfeedModule } from '../modules/home/newsfeed/newsfeed.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { PostsService } from '../shared/services/posts.service';
@@ -29,7 +28,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     MaterialModule,
     HomeModule,
-    NewsfeedModule,
     AccountModule,
     AppRoutingModule
   ],
