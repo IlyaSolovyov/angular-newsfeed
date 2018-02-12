@@ -6,6 +6,8 @@ import { NewsfeedRoutingModule } from './newsfeed-routing.module';
 
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
 import { FeedComponent } from './feed/feed.component';
+import { PostComponent } from './post/post.component';
+import { PostListComponent } from './post-list/post-list.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { FeedComponent } from './feed/feed.component';
   ],
   declarations: [
     NewsfeedComponent,
-    FeedComponent
+    FeedComponent,
+    PostComponent,
+    PostListComponent
   ]
 })
 export class NewsfeedModule {
