@@ -1,1 +1,13 @@
 <mat-toolbar color="primary">Newsfeed</mat-toolbar>
+<mat-tab-group color="primary">
+
+  <mat-tab label="Football">
+    <newsfeed-feed [category]="'Football'">
+    </newsfeed-feed>
+  </mat-tab>
+
+  <mat-tab label="Angular">
+    <newsfeed-feed [category]="'Angular'">
+    </newsfeed-feed>
+  </mat-tab>
+</mat-tab-group>

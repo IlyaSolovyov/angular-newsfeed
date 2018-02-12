@@ -5,6 +5,7 @@ import { MaterialModule } from '../../../shared/material.module';
 import { NewsfeedRoutingModule } from './newsfeed-routing.module';
 
 import { NewsfeedComponent } from './newsfeed/newsfeed.component';
+import { FeedComponent } from './feed/feed.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { NewsfeedComponent } from './newsfeed/newsfeed.component';
   ],
   declarations: [
     NewsfeedComponent,
+    FeedComponent
   ]
 })
 export class NewsfeedModule {
