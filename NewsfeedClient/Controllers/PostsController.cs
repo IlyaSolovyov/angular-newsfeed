@@ -12,20 +12,62 @@ namespace NewsfeedClient.Controllers
     [Route("api/[controller]")]
     public class PostsController : Controller
     {
-        // GET: api/posts
-        [HttpGet]
-        public IEnumerable<Post> Get()
+        private List<User> TestUsers { get; set; }
+        private List<Digest> TestDigests { get; set; }
+        private List<Source> TestSources { get; set; }
+        private List<Post> TestPosts { get; set; }
+
+        public PostsController()
         {
-            return new Post[] { new Post{ Id = 1, TimePosted = DateTime.Now, Source = Source.VK.ToString(), Author = "John Smith", Content = "Some content 1" },
-                                new Post{ Id = 2, TimePosted = DateTime.Now, Source = Source.Twitter.ToString(), Author = "Amy Smith", Content = "Some content 2" },
-                                new Post{ Id = 3, TimePosted = DateTime.Now, Source = Source.VK.ToString(), Author = "Brian Smith", Content = "Some content 3" }};
+            PopulateWithDummyData();
         }
 
-        // GET: api/posts/5
-        [HttpGet("{id}", Name = "Get")]
-        public Post Get(int id)
+        private void PopulateWithDummyData()
         {
-            return new Post { Id = id, TimePosted = DateTime.Now, Source = Source.VK.ToString(), Author = "John Smith", Content = "Some content" };
+            throw new NotImplementedException();
+        }
+
+        // GET: api/posts/digests/5
+        [HttpGet("posts/digests/{digestId}")]
+        public IEnumerable<Post> GetPostsByDigest(int digestId)
+        {
+            List<Post> posts = new List<Post>();
+
+            List<Source> sources = TestDigests
+                .FirstOrDefault(digest => digest.Id == digestId)
+                .Sources
+                .ToList();
+
+            foreach(Source source in sources)
+            {
+                posts.AddRange(source.Posts);
+            }
+
+            return posts
+                .OrderByDescending(post => post.TimePosted);
+        }
+
+        // GET: api/posts/users/5
+        [HttpGet("posts/users/{userId}")]
+        public IEnumerable<Post> GetPostsByUser(int userId)
+        {
+            List<Post> posts = new List<Post>();
+
+            List<Digest> digests = TestUsers
+                .FirstOrDefault(user => user.Id == userId)
+                .Digests
+                .ToList();
+
+            foreach (Digest digest in digests)
+            {
+                foreach (Source source in digest.Sources)
+                {
+                    posts.AddRange(source.Posts);
+                }
+            }
+
+            return posts
+                .OrderByDescending(post => post.TimePosted);
         }
 
         // POST: api/posts
