@@ -11,5 +11,6 @@ namespace NewsfeedClient.Models
         public string Username;
         public string Password;
         public ICollection<Digest> Digests;
+        public ICollection<User> Friends;
     }
 }
