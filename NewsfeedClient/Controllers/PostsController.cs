@@ -24,8 +24,34 @@ namespace NewsfeedClient.Controllers
 
         private void PopulateWithDummyData()
         {
-            throw new NotImplementedException();
+            TestPosts = new List<Post>
+            {
+                new Post { Id = 1, Content = "Post number 1 via VK", TimePosted = DateTime.Now },
+                new Post { Id = 2, Content = "Post number 2 via VK", TimePosted = DateTime.Now.AddHours(-2) },
+                new Post { Id = 3, Content = "Post number 3 via Twitter", TimePosted = DateTime.Now.AddHours(3) },
+                new Post { Id = 4, Content = "Post number 4 via Twitter", TimePosted = DateTime.Now.AddMinutes(-22) },
+                new Post { Id = 5, Content = "Post number 5 via VK", TimePosted = DateTime.Now.AddMinutes(55) }
+            };
+
+            TestSources = new List<Source>
+            {
+                new Source {Id = 1, Name = "VK Public Page #1", Service = "VK", Posts = TestPosts.GetRange(0, 2) },
+                new Source {Id = 2, Name = "Twitter Page #1", Service = "Twitter", Posts = TestPosts.GetRange(2, 2) },
+                new Source {Id = 3, Name = "VK Public Page #2",    Service = "VK", Posts = TestPosts.GetRange(4, 1) }
+            };
+
+            TestDigests = new List<Digest>
+            {
+                new Digest {Id = 1, Name = "Football", Public = true, Sources = TestSources.GetRange(0,1) },
+                new Digest {Id = 2, Name = "Angular", Public = true, Sources = TestSources.GetRange(1,2) },
+            };
+
+            TestUsers = new List<User>
+            {
+                 new User { Id = 1, Digests = TestDigests }
+            };
         }
+                
 
         // GET: api/posts/digests/5
         [HttpGet("posts/digests/{digestId}")]
