@@ -8,9 +8,7 @@ namespace NewsfeedClient.Models
     public class Post
     {
         public int Id { get; set; }
-        public string Source { get; set; }
-        public DateTime TimePosted { get; set; }
-        public string Author { get; set; }
+        public DateTime TimePosted { get; set; }       
         public string Content { get; set; }
         public Object[] Attachments { get; set; }
     }

@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace NewsfeedClient.Models
 {
-    public enum Source
+    public class Source
     {
-       VK,
-       Twitter
+        public int Id { get; set; }
+        public string Service { get; set; }
+        public ICollection<Post> Posts;
     }
 }

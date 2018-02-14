@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 
 namespace NewsfeedClient.Models
 {
-    public class Newsletter
+    public class Digest
     {
         public int Id;
+        public string Name;
         public User Creator;
+        public Boolean Public;
+        public ICollection<Source> Sources;
     }
 }
