@@ -54,7 +54,7 @@ namespace NewsfeedClient.Controllers
                 
 
         // GET: api/posts/digests/5
-        [HttpGet("posts/digests/{digestId}")]
+        [HttpGet("digests/{digestId}")]
         public IEnumerable<Post> GetPostsByDigest(int digestId)
         {
             List<Post> posts = new List<Post>();
@@ -74,7 +74,7 @@ namespace NewsfeedClient.Controllers
         }
 
         // GET: api/posts/users/5
-        [HttpGet("posts/users/{userId}")]
+        [HttpGet("users/{userId}")]
         public IEnumerable<Post> GetPostsByUser(int userId)
         {
             List<Post> posts = new List<Post>();
