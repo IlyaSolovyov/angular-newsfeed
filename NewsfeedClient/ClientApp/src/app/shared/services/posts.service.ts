@@ -6,11 +6,11 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
 
-    getPosts() {
-        return this.http.get('/api/posts/');      
+    getPostsByDigest(digestId: number) {
+        return this.http.get('/api/posts/digests/' + digestId);      
     }
 
-    getPost(id: number) {
-        return this.http.get('api/posts/' + id);
+    getPostsByUser(userId: number) {
+        return this.http.get('api/posts/users/' + userId);
     }
 }
