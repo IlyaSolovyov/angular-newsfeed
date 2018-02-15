@@ -38,11 +38,21 @@ namespace NewsfeedClient.Controllers
 
         // GET: api/users/5/digests
         [HttpGet("{userId}/digests/")]
-        public IEnumerable<Digest> GetDigestsByUser(int userId)
+        public IEnumerable<DigestViewModel> GetDigestsByUser(int userId)
         {
-            return TestUsers
+            List<DigestViewModel> digests = new List<DigestViewModel>();
+
+            List<Digest> digestModels = TestUsers
                 .FirstOrDefault(user => user.Id == userId)
-                .Digests;
+                .Digests
+                .ToList();
+
+            foreach (Digest digestModel in digestModels)
+            {
+               digests.Add(new DigestViewModel(digestModel));
+            }
+
+            return digests;
         }
 
         // GET: api/users/5/digests

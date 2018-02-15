@@ -10,6 +10,9 @@ import { PostComponent } from './post/post.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostDetailedComponent } from './post-detailed/post-detailed.component';
 
+import { UsersService } from '../../../shared/services/users.service';
+import { PostsService } from '../../../shared/services/posts.service';
+
 
 @NgModule({
   imports: [
@@ -24,6 +27,10 @@ import { PostDetailedComponent } from './post-detailed/post-detailed.component';
     PostComponent,
     PostListComponent,
     PostDetailedComponent
+  ],
+  providers: [
+    UsersService,
+    PostsService
   ]
 })
 export class NewsfeedModule {

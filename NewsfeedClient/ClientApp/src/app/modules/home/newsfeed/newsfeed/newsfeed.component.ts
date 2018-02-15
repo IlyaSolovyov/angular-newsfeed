@@ -20,8 +20,8 @@ export class NewsfeedComponent {
     this.getDigests(this.currentUser.id);
   }
 
-  getCurrentUser(){
-
+  getCurrentUser() {
+    this.currentUser = this.usersService.getCurrentUser();
   }
 
   getDigests(userId: number){
