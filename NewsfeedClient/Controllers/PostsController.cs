@@ -42,8 +42,8 @@ namespace NewsfeedClient.Controllers
 
             TestDigests = new List<Digest>
             {
-                new Digest {Id = 1, Name = "Football", Public = true, Sources = TestSources.GetRange(0,1) },
-                new Digest {Id = 2, Name = "Angular", Public = true, Sources = TestSources.GetRange(1,2) },
+                new Digest {Id = 1, Name = "Football", IsPublic = true, Sources = TestSources.GetRange(0,1) },
+                new Digest {Id = 2, Name = "Angular", IsPublic = true, Sources = TestSources.GetRange(1,2) },
             };
 
             TestUsers = new List<User>

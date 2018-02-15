@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsfeedClient.Models;
+using NewsfeedClient.ViewModels;
 
 namespace NewsfeedClient.Controllers
 {
@@ -24,8 +25,8 @@ namespace NewsfeedClient.Controllers
         {        
             TestDigests = new List<Digest>
             {
-                new Digest {Id = 1, Name = "Football", Public = true},
-                new Digest {Id = 2, Name = "Angular", Public = true },
+                new Digest {Id = 1, Name = "Football", IsPublic = true},
+                new Digest {Id = 2, Name = "Angular", IsPublic = true },
             };
 
             TestUsers = new List<User>
@@ -46,11 +47,21 @@ namespace NewsfeedClient.Controllers
 
         // GET: api/users/5/digests
         [HttpGet("{userId}/friends/")]
-        public IEnumerable<User> GetFriendsByUser(int userId)
+        public IEnumerable<UserViewModel> GetFriendsByUser(int userId)
         {
-            return TestUsers
+            List<UserViewModel> friends = new List<UserViewModel>();
+
+            List<User> friendModels = TestUsers
                 .FirstOrDefault(user => user.Id == userId)
-                .Friends;
+                .Friends
+                .ToList();
+
+            foreach(User friendModel in friendModels)
+            {
+                friends.Add(new UserViewModel(friendModel));
+            }
+
+            return friends;
         }
     }
 }
