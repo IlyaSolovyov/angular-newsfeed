@@ -6,7 +6,6 @@ export class Digest {
 
   constructor(
     public name: string,
-    public content: string,
     public creator: User,
     public isPublic: boolean,
     public posts: object[],

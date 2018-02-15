@@ -7,10 +7,10 @@ namespace NewsfeedClient.Models
 {
     public class User
     {
-        public int Id;
-        public string Username;
-        public string Password;
-        public ICollection<Digest> Digests;
-        public ICollection<User> Friends;
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public ICollection<Digest> Digests { get; set; }
+        public ICollection<User> Friends { get; set; }
     }
 }

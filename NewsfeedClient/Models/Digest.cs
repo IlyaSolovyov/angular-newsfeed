@@ -7,10 +7,10 @@ namespace NewsfeedClient.Models
 {
     public class Digest
     {
-        public int Id;
-        public string Name;
-        public User Creator;
-        public Boolean Public;
-        public ICollection<Source> Sources;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public User Creator { get; set; }
+        public Boolean IsPublic { get; set; }
+        public ICollection<Source> Sources { get; set; }
     }
 }
