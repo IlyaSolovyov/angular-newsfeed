@@ -1,18 +1,16 @@
-<div style="border: 1px solid red">Feed component with {{category}} category</div>
-
+<!--
 <mat-drawer-container>
 
-  <mat-drawer mode="side" position="end" opened="true">
-    <newsfeed-post-detailed>
-    </newsfeed-post-detailed>
-  </mat-drawer>
+<mat-drawer mode="side" position="end" opened="true">
+     <newsfeed-post-detailed>
+     </newsfeed-post-detailed>
+   </mat-drawer>
 
-  <mat-drawer-content>
-    <newsfeed-post-list>
-    </newsfeed-post-list>
-  </mat-drawer-content>
-
+<mat-drawer-content>
+-->
+<newsfeed-post-list [posts]="posts">
+</newsfeed-post-list>
+<!--
+</mat-drawer-content>
 </mat-drawer-container>
-
-
-
+-->

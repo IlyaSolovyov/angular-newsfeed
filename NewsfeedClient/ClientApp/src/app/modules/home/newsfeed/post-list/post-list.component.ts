@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Post } from '../../../../shared/models/post';
 
 @Component({
     selector: 'newsfeed-post-list',
@@ -7,8 +8,6 @@ import { Component } from '@angular/core';
 })
 
 export class PostListComponent {
+  @Input() public posts: Post[];
 
-    constructor() {
-
-    }
 }
