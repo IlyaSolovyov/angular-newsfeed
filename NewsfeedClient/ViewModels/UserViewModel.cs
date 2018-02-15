@@ -12,5 +12,13 @@ namespace NewsfeedClient.ViewModels
         public string Username { get; set; }
         public ICollection<Digest> Digests { get; set; }
         public ICollection<User> Friends { get; set; }
+
+        public UserViewModel(User user)
+        {
+            Id = user.Id;
+            Username = user.Username;
+            Digests = user.Digests;
+            Friends = user.Friends;
+        }
     }
 }
