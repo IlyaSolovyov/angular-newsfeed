@@ -1,13 +1,9 @@
 <mat-toolbar color="primary">Newsfeed</mat-toolbar>
 <mat-tab-group color="primary">
 
-  <mat-tab label="Football">
-    <newsfeed-feed [category]="'Football'">
+  <mat-tab *ngFor="let digest of digests" label="{{digest.name}}">
+    <newsfeed-feed [category]="digest.name">
     </newsfeed-feed>
   </mat-tab>
 
-  <mat-tab label="Angular">
-    <newsfeed-feed [category]="'Angular'">
-    </newsfeed-feed>
-  </mat-tab>
 </mat-tab-group>

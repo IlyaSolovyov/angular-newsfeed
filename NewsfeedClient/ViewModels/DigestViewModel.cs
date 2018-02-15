@@ -17,7 +17,8 @@ namespace NewsfeedClient.ViewModels
         {
             Id = digest.Id;
             Name = digest.Name;
-            Creator = digest.Creator.Username;
+
+            Creator = digest.Creator!=null ? digest.Creator.Username : "Unknown author";
             IsPublic = digest.IsPublic;
         }
     }

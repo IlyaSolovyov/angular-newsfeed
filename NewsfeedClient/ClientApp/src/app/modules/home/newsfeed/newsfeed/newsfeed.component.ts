@@ -13,19 +13,24 @@ export class NewsfeedComponent {
   constructor(private usersService: UsersService) { }
 
   currentUser: User;
-  digests: Digest[]
+  digests: Digest[];
 
   ngOnInit() {
     this.getCurrentUser();
     this.getDigests(this.currentUser.id);
+    console.log(this.digests)
   }
 
   getCurrentUser() {
     this.currentUser = this.usersService.getCurrentUser();
   }
 
-  getDigests(userId: number){
-    
+  getDigests(userId: number) {
+    this.usersService.getDigestsByUser(this.currentUser.id)
+      .subscribe((digests: Digest[]) => {
+        this.digests = digests;
+        console.log("Digest count: " + this.digests.length);
+      });
   }
 }
 
