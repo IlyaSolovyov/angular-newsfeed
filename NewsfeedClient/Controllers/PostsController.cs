@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsfeedClient.Models;
+using NewsfeedClient.ViewModels;
 
 namespace NewsfeedClient.Controllers
 {
@@ -55,9 +56,10 @@ namespace NewsfeedClient.Controllers
 
         // GET: api/posts/digests/5
         [HttpGet("digests/{digestId}")]
-        public IEnumerable<Post> GetPostsByDigest(int digestId)
+        public IEnumerable<PostViewModel> GetPostsByDigest(int digestId)
         {
-            List<Post> posts = new List<Post>();
+            List<PostViewModel> posts = new List<PostViewModel>();
+            List<Post> postModels = new List<Post>();
 
             List<Source> sources = TestDigests
                 .FirstOrDefault(digest => digest.Id == digestId)
@@ -66,7 +68,11 @@ namespace NewsfeedClient.Controllers
 
             foreach(Source source in sources)
             {
-                posts.AddRange(source.Posts);
+                postModels = source.Posts.ToList();
+                foreach(Post postModel in postModels)
+                {
+                    posts.Add(new PostViewModel(postModel, source));
+                }
             }
 
             return posts
@@ -75,9 +81,9 @@ namespace NewsfeedClient.Controllers
 
         // GET: api/posts/users/5
         [HttpGet("users/{userId}")]
-        public IEnumerable<Post> GetPostsByUser(int userId)
+        public IEnumerable<PostViewModel> GetPostsByUser(int userId)
         {
-            List<Post> posts = new List<Post>();
+            List<PostViewModel> posts = new List<PostViewModel>();
 
             List<Digest> digests = TestUsers
                 .FirstOrDefault(user => user.Id == userId)
@@ -88,7 +94,10 @@ namespace NewsfeedClient.Controllers
             {
                 foreach (Source source in digest.Sources)
                 {
-                    posts.AddRange(source.Posts);
+                    foreach(Post postModel in source.Posts)
+                    {
+                        posts.Add(new PostViewModel(postModel, source));
+                    }
                 }
             }
 
