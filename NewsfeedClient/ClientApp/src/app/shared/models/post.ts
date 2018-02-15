@@ -4,9 +4,7 @@ import { Injectable } from '@angular/core';
 export class Post {
 
   constructor(
-    public source: string,
-    public timePosted: Date,
-    public author: string,
+    public timePosted: Date,  
     public content: string,
     public attachments: object[],
     public id?: number) {

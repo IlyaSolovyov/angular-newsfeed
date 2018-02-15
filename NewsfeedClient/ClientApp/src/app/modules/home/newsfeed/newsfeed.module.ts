@@ -28,3 +28,7 @@ import { PostDetailedComponent } from './post-detailed/post-detailed.component';
 })
 export class NewsfeedModule {
 }
+
+export function exportNewsfeedModule() {
+  return NewsfeedModule;
+}

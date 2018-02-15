@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NewsfeedModule } from './newsfeed/newsfeed.module';
+import { exportNewsfeedModule } from './newsfeed/newsfeed.module';
 
 import { FoldersComponent } from './folders/folders.component';
 import { FriendsComponent } from './friends/friends.component';
@@ -8,12 +8,13 @@ import { SettingsComponent } from './settings/settings.component';
 import { HomeComponent } from './home/home.component';
 
 
+
 const pagesRoutes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
     children: [
-      { path: 'newsfeed', loadChildren: () => NewsfeedModule },
+      { path: 'newsfeed', loadChildren: 'app/modules/home/newsfeed/newsfeed.module#NewsfeedModule'},
       { path: 'folders', component: FoldersComponent },
       { path: 'friends', component: FriendsComponent },
       { path: 'settings', component: SettingsComponent },
