@@ -2,7 +2,7 @@
 <mat-tab-group color="primary">
 
   <mat-tab *ngFor="let digest of digests" label="{{digest.name}}">
-    <newsfeed-feed [category]="digest.name">
+    <newsfeed-feed [digest]="digest">
     </newsfeed-feed>
   </mat-tab>
 
