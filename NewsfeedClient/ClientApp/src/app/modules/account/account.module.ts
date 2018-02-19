@@ -13,7 +13,8 @@ import { LoginComponent } from './login/login/login.component';
   ],
   declarations: [
     AccountComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ]
 })
 export class AccountModule {
