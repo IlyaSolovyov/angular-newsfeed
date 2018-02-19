@@ -4,6 +4,7 @@ import { AccountRoutingModule } from './account-routing.module';
 
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login/login.component';
+import { RegisterComponent } from './login/register/register.component';
 
 
 @NgModule({
