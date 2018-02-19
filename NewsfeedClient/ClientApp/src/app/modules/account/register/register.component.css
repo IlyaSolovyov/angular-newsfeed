@@ -1,1 +1,19 @@
-﻿
+.card-content {
+  padding: 5px 10px
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+  mat-card-content > * {
+    width: 100%;
+  }
+
+mat-card-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
