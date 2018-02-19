@@ -4,13 +4,18 @@ import { AccountRoutingModule } from './account-routing.module';
 
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login/login.component';
-import { RegisterComponent } from './login/register/register.component';
+import { RegisterComponent } from './register/register.component';
+import { MaterialModule } from '../../shared/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    AccountRoutingModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AccountRoutingModule,
   ],
   declarations: [
     AccountComponent,
