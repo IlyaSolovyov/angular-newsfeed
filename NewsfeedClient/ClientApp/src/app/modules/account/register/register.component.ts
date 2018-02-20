@@ -1,34 +1,43 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'account-register',
-    templateUrl: './register.component.html',
-    styleUrls: ['./register.component.css']
+  selector: 'account-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 
 export class RegisterComponent {
 
-    constructor() {}
+  constructor(private router: Router) { }
 
-    emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-    usernameFormControl = new FormControl('', [Validators.required]);
-    passFormControl = new FormControl('', [Validators.required]);
-    hide = true;
+  username: string;
+  email: string;
+  password: string;
 
-    getEmailErrorMessage() {
-      return this.emailFormControl.hasError('required') ? 'This field is required' :
-        this.emailFormControl.hasError('email') ? 'Not a valid email' :
-          '';
-    }
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  usernameFormControl = new FormControl('', [Validators.required]);
+  passFormControl = new FormControl('', [Validators.required]);
+  hide = true;
 
-    getUsernameErrorMessage() {
-      return this.usernameFormControl.hasError('required') ? 'This field is required' :
-          '';
-    }
+  getEmailErrorMessage() {
+    return this.emailFormControl.hasError('required') ? 'This field is required' :
+      this.emailFormControl.hasError('email') ? 'Not a valid email' :
+        '';
+  }
 
-    getPassErrorMessage() {
-      return this.passFormControl.hasError('required') ? 'This field is required' :
-          '';
-    }
+  getUsernameErrorMessage() {
+    return this.usernameFormControl.hasError('required') ? 'This field is required' :
+      '';
+  }
+
+  getPassErrorMessage() {
+    return this.passFormControl.hasError('required') ? 'This field is required' :
+      '';
+  }
+
+  register() {
+    this.router.navigate(['account/login']);
+  }
 }
