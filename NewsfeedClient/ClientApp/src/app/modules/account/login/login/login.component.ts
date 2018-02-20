@@ -34,13 +34,17 @@ export class LoginComponent {
 
   login(email, password) {
     this.accountService.login(email, password)
-      .subscribe((response: string) => {
-        localStorage.setItem('currentUser', JSON.stringify(response));
-        this.snackBar.open('Successfully signed in as ' + localStorage.getItem("currentUser").toString(), 'Okay', {
-          duration: 2000,
-        });
+      .subscribe(
+      data => {
+        localStorage.setItem('currentUser', JSON.stringify(data));
+        this.snackBar.open('Successfully signed in as ' + localStorage.getItem("currentUser").toString(), 'Okay', {duration: 2000});
+        this.router.navigate(['/home']);
+      },
+      error => {
+        // login failed so display error
+        this.snackBar.open('Error: ' + error["error"], 'Okay', { duration: 5000 });
       });
-    this.router.navigate(['/home']);
   }
 
 }
+   
