@@ -1,8 +1,8 @@
-.card-content{
+.card-content {
   padding: 5px 10px
 }
 
-mat-card-content {
+form {
   display: flex;
   flex-direction: column;
 }

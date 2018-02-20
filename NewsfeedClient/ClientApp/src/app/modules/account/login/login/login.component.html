@@ -1,23 +1,30 @@
 <mat-toolbar>
   <div class="mat-toolbar-tools">
-    <h2><span>Login</span></h2>
+    <h2><span>Login Form</span></h2>
   </div>
 </mat-toolbar>
+
 <div class="card-content">
   <mat-card-content>
-    <mat-form-field>
-      <input matInput placeholder="E-mail" [formControl]="email" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
 
-    <mat-form-field>
-      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </mat-form-field>
+    <form (ngSubmit)="login()">
+
+      <mat-form-field>
+        <input matInput placeholder="E-mail" [formControl]="emailFormControl" required [(ngModel)]="email">
+        <mat-error *ngIf="emailFormControl.invalid">{{getEmailErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Password" [formControl]="passFormControl" required [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-error *ngIf="passFormControl.invalid">{{getPassErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-raised-button type="submit" [disabled]="emailFormControl.invalid || passFormControl.invalid">Login</button>
+        <button mat-raised-button routerLink="../register">Don't have an account?</button>
+      </mat-card-actions>
+    </form>
+
   </mat-card-content>
-
-  <mat-card-actions>
-    <button mat-raised-button>Login</button>
-    <button mat-raised-button routerLink="../register">Don't have an account?</button>
-  </mat-card-actions>
 </div>

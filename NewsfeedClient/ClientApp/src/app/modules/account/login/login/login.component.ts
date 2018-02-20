@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'account-login',
@@ -9,13 +10,28 @@ import { FormControl, Validators } from '@angular/forms';
 
 export class LoginComponent {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  email: string;
+  password: string;
+
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  passFormControl = new FormControl('', [Validators.required]);
   hide = true;
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
+
+  getEmailErrorMessage() {
+    return this.emailFormControl.hasError('required') ? 'You must enter a value' :
+      this.emailFormControl.hasError('email') ? 'Not a valid email' :
             '';
   }
+
+  getPassErrorMessage() {
+    return this.passFormControl.hasError('required') ? 'This field is required' :
+      '';
+  }
+
+  login() {
+    this.router.navigate(['/home']);
+  }
+
 }
