@@ -7,7 +7,7 @@
 <div class="card-content">
   <mat-card-content>
 
-    <form (ngSubmit)="login()">
+    <form (ngSubmit)="login(email, password)">
 
       <mat-form-field>
         <input matInput placeholder="E-mail" [formControl]="emailFormControl" required [(ngModel)]="email">

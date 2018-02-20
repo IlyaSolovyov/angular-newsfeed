@@ -3,12 +3,11 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  canActivateCondition: boolean = false;
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     
-    if (this.canActivateCondition) {
+    if (localStorage.getItem('currentUser')) {
       console.log("AuthGuard passed.");
       return true;
     }

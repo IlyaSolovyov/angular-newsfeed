@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { AccountService } from '../../../../shared/services/account.service';
 
 @Component({
     selector: 'account-login',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class LoginComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private accountService: AccountService, private snackBar: MatSnackBar) { }
 
   email: string;
   password: string;
@@ -30,7 +32,14 @@ export class LoginComponent {
       '';
   }
 
-  login() {
+  login(email, password) {
+    this.accountService.login(email, password)
+      .subscribe((response: string) => {
+        localStorage.setItem('currentUser', JSON.stringify(response));
+        this.snackBar.open('Successfully signed in as ' + localStorage.getItem("currentUser").toString(), 'Okay', {
+          duration: 2000,
+        });
+      });
     this.router.navigate(['/home']);
   }
 

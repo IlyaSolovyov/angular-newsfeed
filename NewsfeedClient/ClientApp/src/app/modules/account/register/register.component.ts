@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AccountService } from '../../../shared/services/account.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'account-register',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class RegisterComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private accountService: AccountService, private snackBar: MatSnackBar) { }
 
   username: string;
   email: string;
@@ -37,7 +39,13 @@ export class RegisterComponent {
       '';
   }
 
-  register() {
+  register(username, email, password) {
+    this.accountService.register(username, email, password)
+      .subscribe((response:string) => {
+        this.snackBar.open(response, 'Okay', {
+          duration: 2000,
+        });
+    });
     this.router.navigate(['account/login']);
   }
 }

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountRoutingModule } from './account-routing.module';
+import { MaterialModule } from '../../shared/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AccountService } from '../../shared/services/account.service';
 
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { MaterialModule } from '../../shared/material.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,6 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AccountComponent,
     LoginComponent,
     RegisterComponent
+  ],
+  providers: [
+    AccountService
   ]
 })
 export class AccountModule {

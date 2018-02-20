@@ -6,7 +6,7 @@
 
 <div class="card-content">
   <mat-card-content>
-    <form (ngSubmit)="register()">
+    <form (ngSubmit)="register(username, email, password)">
 
       <mat-form-field hintLabel="Max 32 characters">
         <input matInput placeholder="Username" maxlength="32" [formControl]="usernameFormControl" required [(ngModel)]="username">
