@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { exportNewsfeedModule } from './newsfeed/newsfeed.module';
+import { AuthGuard } from '../../shared/guards/auth.guard';
 
 import { FoldersComponent } from './folders/folders.component';
 import { FriendsComponent } from './friends/friends.component';
 import { SettingsComponent } from './settings/settings.component';
 import { HomeComponent } from './home/home.component';
-import { AuthGuard } from '../../shared/guards/auth.guard';
-
 
 
 const pagesRoutes: Routes = [

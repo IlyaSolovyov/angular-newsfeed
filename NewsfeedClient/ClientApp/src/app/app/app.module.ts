@@ -9,6 +9,7 @@ import { HomeModule } from '../modules/home/home.module';
 import { AccountModule } from '../modules/account/account.module';
 import { AppRoutingModule } from './app-routing.module';
 
+import { AnonymousGuard } from '../shared/guards/anonymous.guard';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { PostsService } from '../shared/services/posts.service';
 
@@ -30,7 +31,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AccountModule,
     AppRoutingModule
   ],
-  providers: [PostsService, AuthGuard],
+  providers: [
+    PostsService,
+    AuthGuard,
+    AnonymousGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
