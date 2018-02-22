@@ -13,8 +13,7 @@ namespace NewsfeedClient.Controllers
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-        private User TestUserModel { get; set; } 
-        private AccountViewModel TestUser { get; set; } 
+        private List<User> Users { get; set; } 
 
         public AccountController()
         {
@@ -23,31 +22,45 @@ namespace NewsfeedClient.Controllers
 
         private void PopulateWithDummyData()
         {
-            TestUserModel = new User { Id = 1, Username = "Test Account", Email = "test-email@gmail.com", Password = "secret_password" };
-            TestUser = new AccountViewModel(TestUserModel);
+            Users = new List<User>
+            {
+                 new User { Id = 1, Username = "Test Account", Email = "test-email@gmail.com", Password = "secret_password" }
+        };       
         }
 
         // POST: api/account/login
         [HttpPost("login")]
-        public IActionResult Login([FromForm]AccountViewModel loginData)
+        public IActionResult Login([FromForm]User loginData)
         {
-            if (loginData.Email != TestUser.Email)
+            if (!Users.Any(u => u.Email==loginData.Email))
             {
                 return NotFound("Email " + loginData.Email + " was not found in the database.");
             }
-            if (loginData.Password != TestUser.Password)
+            User user = Users.Find(u => u.Email == loginData.Email);
+            if (loginData.Password != user.Password)
             {
                 return NotFound("Incorrect password");
             }
-            return Ok(TestUser.Username);
+            return Ok(user.Id);
         }
 
         // POST: api/account/register
         [HttpPost("register")]
-        public IActionResult Register([FromForm]AccountViewModel registerData)
+        public IActionResult Register([FromForm]User registerData)
         {
 
             return Ok("Account " + registerData.Username + " would have been registered if this was a real database interaction.");
         }
+
+        // POST: api/account/5
+        [HttpGet("{userId}")]
+        public AccountViewModel GetUserData(int userId)
+        {
+            AccountViewModel userData = new AccountViewModel(Users
+                .Find(u => u.Id == userId));
+            userData.Password = null;
+            return userData;
+        }
+
     }
 }

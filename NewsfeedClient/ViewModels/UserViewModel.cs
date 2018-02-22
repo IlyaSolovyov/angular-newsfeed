@@ -10,6 +10,7 @@ namespace NewsfeedClient.ViewModels
     {
         public int Id { get; set; }
         public string Username { get; set; }
+        public string AvatarFilename { get; set; }
         public ICollection<Digest> Digests { get; set; }
         public ICollection<User> Friends { get; set; }
 
@@ -17,6 +18,7 @@ namespace NewsfeedClient.ViewModels
         {
             Id = user.Id;
             Username = user.Username;
+            AvatarFilename = user.AvatarFilename;
             Digests = user.Digests;
             Friends = user.Friends;
         }

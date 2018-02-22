@@ -31,7 +31,7 @@ namespace NewsfeedClient.Controllers
 
             TestUsers = new List<User>
             {
-                 new User { Id = 1, Digests = TestDigests }
+                 new User { Id = 1, Digests = TestDigests, Username = "Test user" }
             };
 
         }

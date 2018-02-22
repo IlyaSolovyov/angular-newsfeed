@@ -11,6 +11,7 @@ namespace NewsfeedClient.Models
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string AvatarFilename { get; set; } = "avatarPlaceholder.png";
         public ICollection<Digest> Digests { get; set; }
         public ICollection<User> Friends { get; set; }
     }
