@@ -8,10 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from '../modules/home/home.module';
 import { AccountModule } from '../modules/account/account.module';
 import { AppRoutingModule } from './app-routing.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AnonymousGuard } from '../shared/guards/anonymous.guard';
 import { AuthGuard } from '../shared/guards/auth.guard';
-import { PostsService } from '../shared/services/posts.service';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -29,10 +29,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MaterialModule,
     HomeModule,
     AccountModule,
+    FlexLayoutModule,
     AppRoutingModule
   ],
   providers: [
-    PostsService,
     AuthGuard,
     AnonymousGuard
   ],
