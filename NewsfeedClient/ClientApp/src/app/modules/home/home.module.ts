@@ -8,6 +8,8 @@ import { DigestsComponent } from './digests/digests.component';
 import { FriendsComponent } from './friends/friends.component';
 import { SettingsComponent } from './settings/settings.component';
 import { HomeComponent } from './home/home.component';
+import { SidenavProfileComponent } from './home/sidenav-profile/sidenav-profile.component';
+import { AccountService } from '../../shared/services/account.service';
 
 
 @NgModule({
@@ -22,7 +24,10 @@ import { HomeComponent } from './home/home.component';
     DigestsComponent,
     FriendsComponent,
     SettingsComponent,
-    
+    SidenavProfileComponent
+  ],
+  providers: [
+    AccountService
   ]
 })
 export class HomeModule {
