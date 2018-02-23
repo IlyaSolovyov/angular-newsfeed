@@ -9,6 +9,6 @@ export class Post {
     public source: string,
     public content: string,
     public attachments: object[],
-    public id?: number) {
+    public id: number) {
   }
 }

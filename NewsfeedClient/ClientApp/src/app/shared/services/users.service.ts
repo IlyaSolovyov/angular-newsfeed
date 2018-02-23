@@ -6,16 +6,12 @@ import { User } from '../models/user';
 @Injectable()
 export class UsersService {
 
-  currentUser: User;
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {
-    this.currentUser = new User("testUser", null, null, 1);
+  getProfileData(userId: number)
+  {
+    return this.http.get<User>('/api/users/' + userId);
   }
-
-  getCurrentUser(): User {
-    return this.currentUser;
-  }
-
   getDigestsByUser(userId: number) {
     return this.http.get<Digest[]>('/api/users/' + userId + '/digests');
   }

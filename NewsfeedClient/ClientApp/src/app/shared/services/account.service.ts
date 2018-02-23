@@ -27,9 +27,12 @@ export class AccountService {
     return this.http.post('/api/account/register', formData, { headers: headers });
   }
 
-  logout()
-  {
+  logout(){
     localStorage.clear();
+  }
+
+  getAccountData(userId: number) {
+    return this.http.get('/api/account/' + userId);
   }
 
 }

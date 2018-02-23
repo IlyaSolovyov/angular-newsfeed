@@ -5,8 +5,10 @@ export class User {
 
   constructor(
     public username: string,
-    public digests: object[],
-    public friends: object[],
-    public id?: number) {
+    public id: number,
+    public avatarFilename: string,
+    public email?: string,
+    public digests?: Digest[],
+    public friends?: object[]) {
   }
 }
