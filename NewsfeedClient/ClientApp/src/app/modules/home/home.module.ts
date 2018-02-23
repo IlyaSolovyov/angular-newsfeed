@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../../shared/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 
-import { DigestsComponent } from './digests/digests.component';
 import { FriendsComponent } from './friends/friends.component';
 import { SettingsComponent } from './settings/settings.component';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +20,6 @@ import { AccountService } from '../../shared/services/account.service';
   ],
   declarations: [
     HomeComponent,
-    DigestsComponent,
     FriendsComponent,
     SettingsComponent,
     SidenavProfileComponent
