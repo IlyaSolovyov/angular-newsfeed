@@ -1,1 +1,25 @@
-﻿
+﻿.newsfeed-container{
+    min-height: 100% !important; 
+    display:flex; 
+    flex-direction:column;
+    align-items:stretch;
+
+}
+mat-toolbar{
+    flex:1;
+}
+mat-tab-group{
+    flex:10;
+    display:flex;
+    flex-direction:column;
+}
+mat-tab-header{
+    flex:1;
+}
+.mat-tab-body-wrapper{
+    height: 100%!important;
+    }
+
+newsfeed-feed{
+    height:100%;
+}

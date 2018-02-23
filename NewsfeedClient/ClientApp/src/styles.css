@@ -1,2 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+:host { min-height: 100vh; }
+div.mat-tab-body-wrapper{
+    flex:1;
+}
