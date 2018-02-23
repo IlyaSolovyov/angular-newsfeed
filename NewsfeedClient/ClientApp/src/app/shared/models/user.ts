@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Digest } from './digest';
 
 @Injectable()
 export class User {

@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">Newsfeed</mat-toolbar>
 <mat-tab-group color="primary">
 
-  <mat-tab *ngFor="let digest of digests" label="{{digest.name}}">
+  <mat-tab *ngFor="let digest of currentUser?.digests" label="{{digest.name}}">
     <newsfeed-feed [digest]="digest">
     </newsfeed-feed>
   </mat-tab>

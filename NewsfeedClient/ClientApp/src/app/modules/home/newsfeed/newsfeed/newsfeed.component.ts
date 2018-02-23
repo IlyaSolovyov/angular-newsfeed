@@ -9,25 +9,19 @@ import { User } from '../../../../shared/models/user';
 })
 
 export class NewsfeedComponent {
-  currentUser: User;
-  digests: Digest[];
+  currentUser: User = null;
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    this.getCurrentUser();
-    this.getDigests(this.currentUser.id);
+    let userId = +localStorage.getItem('currentUser');
+    this.getCurrentUser(userId);
   }
 
-  getCurrentUser() {
-    this.currentUser = this.usersService.getCurrentUser();
-  }
-
-  getDigests(userId: number) {
-    this.usersService.getDigestsByUser(userId)
-      .subscribe((digests: Digest[]) => {
-        this.digests = digests;
-        console.log("Digest count: " + this.digests.length);
+  getCurrentUser(userId: number) {
+    this.usersService.getProfileData(userId)
+      .subscribe((user: User) => {
+        this.currentUser = user;
       });
   }
 }
