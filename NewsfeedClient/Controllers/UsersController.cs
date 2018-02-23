@@ -13,8 +13,8 @@ namespace NewsfeedClient.Controllers
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
-        private List<User> TestUsers { get; set; }
-        private List<Digest> TestDigests { get; set; }
+        private List<User> Users { get; set; }
+        private List<Digest> Digests { get; set; }
 
         public UsersController()
         {
@@ -23,15 +23,15 @@ namespace NewsfeedClient.Controllers
 
         private void PopulateWithDummyData()
         {        
-            TestDigests = new List<Digest>
+            Digests = new List<Digest>
             {
                 new Digest {Id = 1, Name = "Basketball", IsPublic = true},
                 new Digest {Id = 2, Name = "Movies", IsPublic = true },
             };
 
-            TestUsers = new List<User>
+            Users = new List<User>
             {
-                 new User { Id = 1, Digests = TestDigests, Username = "Test user" }
+                 new User { Id = 1, Digests = Digests, Username = "Test user" }
             };
 
         }
@@ -42,7 +42,7 @@ namespace NewsfeedClient.Controllers
         {
             List<DigestViewModel> digests = new List<DigestViewModel>();
 
-            List<Digest> digestModels = TestUsers
+            List<Digest> digestModels = Users
                 .FirstOrDefault(user => user.Id == userId)
                 .Digests
                 .ToList();
@@ -61,7 +61,7 @@ namespace NewsfeedClient.Controllers
         {
             List<UserViewModel> friends = new List<UserViewModel>();
 
-            List<User> friendModels = TestUsers
+            List<User> friendModels = Users
                 .FirstOrDefault(user => user.Id == userId)
                 .Friends
                 .ToList();
@@ -72,6 +72,15 @@ namespace NewsfeedClient.Controllers
             }
 
             return friends;
+        }
+
+        // POST: api/users/5
+        [HttpGet("{userId}")]
+        public UserViewModel GetUserData(int userId)
+        {
+            UserViewModel userData = new UserViewModel(Users
+                .Find(u => u.Id == userId));
+            return userData;
         }
     }
 }

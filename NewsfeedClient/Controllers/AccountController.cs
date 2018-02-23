@@ -48,7 +48,6 @@ namespace NewsfeedClient.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromForm]User registerData)
         {
-
             return Ok("Account " + registerData.Username + " would have been registered if this was a real database interaction.");
         }
 
@@ -58,7 +57,6 @@ namespace NewsfeedClient.Controllers
         {
             AccountViewModel userData = new AccountViewModel(Users
                 .Find(u => u.Id == userId));
-            userData.Password = null;
             return userData;
         }
 

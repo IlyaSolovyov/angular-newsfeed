@@ -13,10 +13,10 @@ namespace NewsfeedClient.Controllers
     [Route("api/[controller]")]
     public class PostsController : Controller
     {
-        private List<User> TestUsers { get; set; }
-        private List<Digest> TestDigests { get; set; }
-        private List<Source> TestSources { get; set; }
-        private List<Post> TestPosts { get; set; }
+        private List<User> Users { get; set; }
+        private List<Digest> Digests { get; set; }
+        private List<Source> Sources { get; set; }
+        private List<Post> Posts { get; set; }
 
         public PostsController()
         {
@@ -25,7 +25,7 @@ namespace NewsfeedClient.Controllers
 
         private void PopulateWithDummyData()
         {
-            TestPosts = new List<Post>
+            Posts = new List<Post>
             {
                 new Post { Id = 1, Content = "Post number 1 via VK", TimePosted = DateTime.Now },
                 new Post { Id = 2, Content = "Post number 2 via VK", TimePosted = DateTime.Now.AddHours(-2) },
@@ -34,22 +34,22 @@ namespace NewsfeedClient.Controllers
                 new Post { Id = 5, Content = "Post number 5 via VK", TimePosted = DateTime.Now.AddMinutes(55) }
             };
 
-            TestSources = new List<Source>
+            Sources = new List<Source>
             {
-                new Source {Id = 1, Name = "VK Public Page #1", Service = "VK", Posts = TestPosts.GetRange(0, 2) },
-                new Source {Id = 2, Name = "Twitter Page #1", Service = "Twitter", Posts = TestPosts.GetRange(2, 2) },
-                new Source {Id = 3, Name = "VK Public Page #2",    Service = "VK", Posts = TestPosts.GetRange(4, 1) }
+                new Source {Id = 1, Name = "VK Public Page #1", Service = "VK", Posts = Posts.GetRange(0, 2) },
+                new Source {Id = 2, Name = "Twitter Page #1", Service = "Twitter", Posts = Posts.GetRange(2, 2) },
+                new Source {Id = 3, Name = "VK Public Page #2",    Service = "VK", Posts = Posts.GetRange(4, 1) }
             };
 
-            TestDigests = new List<Digest>
+            Digests = new List<Digest>
             {
-                new Digest {Id = 1, Name = "Football", IsPublic = true, Sources = TestSources.GetRange(0,1) },
-                new Digest {Id = 2, Name = "Angular", IsPublic = true, Sources = TestSources.GetRange(1,2) },
+                new Digest {Id = 1, Name = "Football", IsPublic = true, Sources = Sources.GetRange(0,1) },
+                new Digest {Id = 2, Name = "Angular", IsPublic = true, Sources = Sources.GetRange(1,2) },
             };
 
-            TestUsers = new List<User>
+            Users = new List<User>
             {
-                 new User { Id = 1, Digests = TestDigests }
+                 new User { Id = 1, Digests = Digests }
             };
         }
                 
@@ -61,7 +61,7 @@ namespace NewsfeedClient.Controllers
             List<PostViewModel> posts = new List<PostViewModel>();
             List<Post> postModels = new List<Post>();
 
-            List<Source> sources = TestDigests
+            List<Source> sources = Digests
                 .FirstOrDefault(digest => digest.Id == digestId)
                 .Sources
                 .ToList();
@@ -85,7 +85,7 @@ namespace NewsfeedClient.Controllers
         {
             List<PostViewModel> posts = new List<PostViewModel>();
 
-            List<Digest> digests = TestUsers
+            List<Digest> digests = Users
                 .FirstOrDefault(user => user.Id == userId)
                 .Digests
                 .ToList();
