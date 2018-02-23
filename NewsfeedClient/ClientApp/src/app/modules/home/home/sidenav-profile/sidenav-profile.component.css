@@ -1,0 +1,12 @@
+.profile-container{
+    height:64px;
+    display:flex;
+    flex-flow:column;
+}
+.profile-avatar{
+    height: 46px;
+    width: 46px;
+}
+.profile-username{
+    height: 18px;
+}

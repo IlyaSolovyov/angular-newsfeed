@@ -15,6 +15,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.0.0-rc1-final" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,24 @@
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\post.ts" />
+    <None Remove="ClientApp\src\app\shared\guards\anonymous.guard.ts" />
+    <None Remove="ClientApp\src\app\shared\guards\auth.guard.ts" />
+    <None Remove="ClientApp\src\app\shared\models\digest.ts" />
+    <None Remove="ClientApp\src\app\shared\models\user.ts" />
+    <None Remove="ClientApp\src\app\shared\services\posts.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\guards\anonymous.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\guards\auth.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\post.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\digest.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\user.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\services\posts.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

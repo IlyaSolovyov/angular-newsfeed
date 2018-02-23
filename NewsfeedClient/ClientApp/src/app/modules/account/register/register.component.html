@@ -1,0 +1,34 @@
+<mat-toolbar>
+  <div class="mat-toolbar-tools">
+    <h2><span>Registration</span></h2>
+  </div>
+</mat-toolbar>
+
+<div class="card-content">
+  <mat-card-content>
+    <form (ngSubmit)="register(username, email, password)">
+
+      <mat-form-field hintLabel="Max 32 characters">
+        <input matInput placeholder="Username" maxlength="32" [formControl]="usernameFormControl" required [(ngModel)]="username">
+        <mat-error *ngIf="usernameFormControl.invalid">{{getUsernameErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="E-mail" [formControl]="emailFormControl" required [(ngModel)]="email">
+        <mat-error *ngIf="emailFormControl.invalid">{{getEmailErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Password" [formControl]="passFormControl" required [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-error *ngIf="passFormControl.invalid">{{getPassErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-raised-button type="submit" [disabled]="usernameFormControl.invalid || emailFormControl.invalid || passFormControl.invalid">Create Account</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+  
+
+</div>
