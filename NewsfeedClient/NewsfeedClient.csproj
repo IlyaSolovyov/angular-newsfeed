@@ -33,6 +33,7 @@
     <None Remove="ClientApp\src\app\shared\guards\anonymous.guard.ts" />
     <None Remove="ClientApp\src\app\shared\guards\auth.guard.ts" />
     <None Remove="ClientApp\src\app\shared\models\digest.ts" />
+    <None Remove="ClientApp\src\app\shared\models\source.ts" />
     <None Remove="ClientApp\src\app\shared\models\user.ts" />
     <None Remove="ClientApp\src\app\shared\services\posts.service.ts" />
   </ItemGroup>
@@ -40,6 +41,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\shared\guards\anonymous.guard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\guards\auth.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\source.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\models\post.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\models\digest.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\models\user.ts" />

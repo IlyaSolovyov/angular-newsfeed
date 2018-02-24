@@ -15,6 +15,7 @@ namespace NewsfeedClient.Controllers
     {
         private List<User> Users { get; set; }
         private List<Digest> Digests { get; set; }
+        private List<Source> Sources { get; set; }
 
         public UsersController()
         {
@@ -22,16 +23,23 @@ namespace NewsfeedClient.Controllers
         }
 
         private void PopulateWithDummyData()
-        {        
+        {
+            Sources = new List<Source>
+            {
+                new Source {Id = 1, Name = "VK Public Page #1", Service = "VK", Posts = null, Url="team" },
+                new Source {Id = 2, Name = "Twitter Page #1", Service = "Twitter", Posts = null, Url="twitter" },
+                new Source {Id = 3, Name = "VK Public Page #2",    Service = "VK", Posts = null, Url="adsnews" }
+            };
+
             Digests = new List<Digest>
             {
-                new Digest {Id = 1, Name = "Basketball", IsPublic = true},
-                new Digest {Id = 2, Name = "Movies", IsPublic = true },
+                new Digest {Id = 1, Name = "Basketball", IsPublic = true, Sources=Sources.GetRange(0,1) },
+                new Digest {Id = 2, Name = "Movies", IsPublic = true, Sources=Sources.GetRange(1,2) },
             };
 
             Users = new List<User>
             {
-                 new User { Id = 1, Digests = Digests, Username = "Test user" }
+                 new User { Id = 1, Digests = Digests, Username = "Test user", Friends= new List<User>() }
             };
 
         }

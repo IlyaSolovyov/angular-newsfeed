@@ -11,16 +11,27 @@ namespace NewsfeedClient.ViewModels
         public int Id { get; set; }
         public string Username { get; set; }
         public string AvatarFilename { get; set; }
-        public ICollection<Digest> Digests { get; set; }
-        public ICollection<User> Friends { get; set; }
+        public List<DigestViewModel> Digests { get; set; }
+        public List<UserViewModel> Friends { get; set; }
 
         public UserViewModel(User user)
         {
             Id = user.Id;
             Username = user.Username;
             AvatarFilename = user.AvatarFilename;
-            Digests = user.Digests;
-            Friends = user.Friends;
+
+            Digests = new List<DigestViewModel>();
+            foreach (Digest digest in user.Digests)
+            {
+                Digests.Add(new DigestViewModel(digest));
+            }
+
+            Friends = new List<UserViewModel>();
+            foreach (User friend in user.Friends)
+            {
+                Friends.Add(new UserViewModel(friend));
+            }
         }
+      
     }
 }

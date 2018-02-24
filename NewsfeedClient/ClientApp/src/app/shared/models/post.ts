@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Source } from './source';
 
 @Injectable()
 export class Post {
 
   constructor(
     public timePosted: Date,
-    public service: string,
-    public source: string,
+    public source: Source,
     public content: string,
     public attachments: object[],
     public id: number) {

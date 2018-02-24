@@ -36,9 +36,9 @@ namespace NewsfeedClient.Controllers
 
             Sources = new List<Source>
             {
-                new Source {Id = 1, Name = "VK Public Page #1", Service = "VK", Posts = Posts.GetRange(0, 2) },
-                new Source {Id = 2, Name = "Twitter Page #1", Service = "Twitter", Posts = Posts.GetRange(2, 2) },
-                new Source {Id = 3, Name = "VK Public Page #2",    Service = "VK", Posts = Posts.GetRange(4, 1) }
+                new Source {Id = 1, Name = "VK Public Page #1", Service = "VK", Posts = Posts.GetRange(0, 2), Url="team" },
+                new Source {Id = 2, Name = "Twitter Page #1", Service = "Twitter", Posts = Posts.GetRange(2, 2), Url="twitter" },
+                new Source {Id = 3, Name = "VK Public Page #2",    Service = "VK", Posts = Posts.GetRange(4, 1), Url="adsnews" }
             };
 
             Digests = new List<Digest>
