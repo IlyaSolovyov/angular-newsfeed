@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 namespace NewsfeedClient.Models
 {
-    public class Post
+    public class DigestSource
     {
-        public int Id { get; set; }
-        public DateTime TimePosted { get; set; }       
-        public string Content { get; set; }
-        public Object[] Attachments { get; set; }
+        public int DigestId { get; set; }
+        public Digest Digest { get; set; }
 
         public int SourceId { get; set; }
         public Source Source { get; set; }

@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NewsfeedClient.DAL;
 
 namespace NewsfeedClient
 {
@@ -12,6 +14,7 @@ namespace NewsfeedClient
         {
             Configuration = configuration;
         }
+
 
         public IConfiguration Configuration { get; }
 
@@ -25,6 +28,9 @@ namespace NewsfeedClient
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddDbContext<NewsfeedContext>(options =>
+            options.UseSqlServer(Configuration["ConnectiongString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,8 +9,18 @@ namespace NewsfeedClient.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public User Creator { get; set; }
         public Boolean IsPublic { get; set; }
-        public ICollection<Source> Sources { get; set; }
+
+        public int CreatorId { get; set; }
+        public User Creator { get; set; }
+
+        public List<Subscription> Subscribers { get; set; }
+        public List<DigestSource> DigestSources { get; set; }
+
+        public Digest()
+        {
+            Subscribers = new List<Subscription>();
+            DigestSources = new List<DigestSource>();
+        }
     }
 }

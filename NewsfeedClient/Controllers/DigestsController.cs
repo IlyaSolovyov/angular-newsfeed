@@ -100,7 +100,7 @@ namespace NewsfeedClient.Controllers
                 return NotFound("Digest #" + digestId + " was not found in the database.");
             }
             Digest digest = Digests.FirstOrDefault(d => d.Id == digestId);
-            digest = updatedDigest;
+            //digest = updatedDigest;
             return Ok("Digest " + digest.Name + " would have been updated if this was a real database interaction.");
         }
 
