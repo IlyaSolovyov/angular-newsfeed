@@ -19,9 +19,9 @@ namespace NewsfeedClient.ViewModels
             Id = digest.Id;
             Name = digest.Name;
             Sources = new List<SourceViewModel>();
-            foreach(Source source in digest.Sources)
+            foreach(DigestSource ds in digest.DigestSources)
             {
-                Sources.Add(new SourceViewModel(source));
+                Sources.Add(new SourceViewModel(ds.Source));
             }
             Creator = digest.Creator!=null ? digest.Creator.Username : "Unknown author";
             IsPublic = digest.IsPublic;
