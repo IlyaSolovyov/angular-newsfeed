@@ -31,6 +31,9 @@ namespace NewsfeedClient
 
             services.AddDbContext<NewsfeedContext>(options =>
             options.UseSqlServer(Configuration["ConnectiongString"]));
+
+            // Automatically perform database migration
+            services.BuildServiceProvider().GetService<NewsfeedContext>().Database.Migrate();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
