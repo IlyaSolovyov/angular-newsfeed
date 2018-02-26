@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NewsfeedClient.DAL;
 using NewsfeedClient.Models;
 using NewsfeedClient.ViewModels;
 
@@ -13,63 +14,48 @@ namespace NewsfeedClient.Controllers
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
-        private List<User> Users { get; set; }
-        private List<Digest> Digests { get; set; }
-        private List<Source> Sources { get; set; }
+        NewsfeedContext db;
 
-        public UsersController()
+        public UsersController(NewsfeedContext context)
         {
-            PopulateWithDummyData();
+            db = context;
         }
 
-        private void PopulateWithDummyData()
+         
+        // GET: api/users/5/subscriptions
+        [HttpGet("{userId}/subscriptions/")]
+        public IActionResult GetSubscriptionsByUser(int userId)
         {
-            Sources = new List<Source>
+            if (!db.Users.Any(u => u.Id == userId))
             {
-                new Source {Id = 1, Name = "VK Public Page #1", Service = "VK", Posts = null, Url="team" },
-                new Source {Id = 2, Name = "Twitter Page #1", Service = "Twitter", Posts = null, Url="twitter" },
-                new Source {Id = 3, Name = "VK Public Page #2",    Service = "VK", Posts = null, Url="adsnews" }
-            };
-
-            Digests = new List<Digest>
-            {
-                new Digest {Id = 1, Name = "Basketball", IsPublic = true, Sources=Sources.GetRange(0,1) },
-                new Digest {Id = 2, Name = "Movies", IsPublic = true, Sources=Sources.GetRange(1,2) },
-            };
-
-            Users = new List<User>
-            {
-                 new User { Id = 1, Digests = Digests, Username = "Test user", Friends= new List<User>() }
-            };
-
-        }
-
-        // GET: api/users/5/digests
-        [HttpGet("{userId}/digests/")]
-        public IEnumerable<DigestViewModel> GetDigestsByUser(int userId)
-        {
+                return NotFound("No such user found in the database.");
+            }
             List<DigestViewModel> digests = new List<DigestViewModel>();
 
-            List<Digest> digestModels = Users
+            List<Subscription> subscriptions = db.Users
                 .FirstOrDefault(user => user.Id == userId)
-                .Digests
-                .ToList();
+                .Subscriptions;
 
-            foreach (Digest digestModel in digestModels)
+            foreach (Subscription subscription in subscriptions)
             {
-               digests.Add(new DigestViewModel(digestModel));
+               digests.Add(new DigestViewModel(subscription.Digest));
             }
 
-            return digests;
+            return Ok(digests);
         }
 
         // GET: api/users/5/digests
         [HttpGet("{userId}/friends/")]
-        public IEnumerable<UserViewModel> GetFriendsByUser(int userId)
+        public IActionResult GetFriendsByUser(int userId)
         {
+            if (!db.Users.Any(u => u.Id == userId))
+            {
+                return NotFound("No such user found in the database.");
+            }
+
             List<UserViewModel> friends = new List<UserViewModel>();
 
-            List<User> friendModels = Users
+            List<User> friendModels = db.Users
                 .FirstOrDefault(user => user.Id == userId)
                 .Friends
                 .ToList();
@@ -79,16 +65,23 @@ namespace NewsfeedClient.Controllers
                 friends.Add(new UserViewModel(friendModel));
             }
 
-            return friends;
+            return Ok(friends);
         }
 
         // POST: api/users/5
         [HttpGet("{userId}")]
-        public UserViewModel GetUserData(int userId)
+        public IActionResult GetUserData(int userId)
         {
-            UserViewModel userData = new UserViewModel(Users
-                .Find(u => u.Id == userId));
-            return userData;
+            if (!db.Users.Any(u => u.Id == userId))
+            {
+                return NotFound("No such user found in the database.");
+            }
+
+            UserViewModel userData = new UserViewModel(
+                db.Users
+                .FirstOrDefault(u => u.Id == userId));
+
+            return Ok(userData);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace NewsfeedClient.DAL
         public DbSet<Digest> Digests { get; set; }
         public DbSet<Source> Sources { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
