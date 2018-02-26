@@ -44,7 +44,7 @@ namespace NewsfeedClient.Controllers
             return Ok(digests);
         }
 
-        // GET: api/users/5/digests
+        // GET: api/users/5/friends
         [HttpGet("{userId}/friends/")]
         public IActionResult GetFriendsByUser(int userId)
         {
