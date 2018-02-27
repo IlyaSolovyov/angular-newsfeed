@@ -33,6 +33,7 @@ namespace NewsfeedClient.Controllers
             }
 
             List<DigestSource> digestSources = db.DigestSources
+                .Include(ds => ds.Source)
                 .Where(ds => ds.DigestId == digestId)
                 .ToList();
 
@@ -66,10 +67,14 @@ namespace NewsfeedClient.Controllers
         {
             if (!db.Users.Any(u => u.Id == userId))
             {
-                return NotFound("No such duser found in the database.");
+                return NotFound("No such user found in the database.");
             }
 
-            User user = db.Users.FirstOrDefault(u => u.Id == userId);
+            User user = db.Users
+                .Include(u =>u.Subscriptions)
+                .ThenInclude(s => s.Digest)
+                .FirstOrDefault(u => u.Id == userId);
+
             List<Digest> digests = new List<Digest>();
             foreach(Subscription subscription in user.Subscriptions)
             {
@@ -81,6 +86,7 @@ namespace NewsfeedClient.Controllers
             foreach (Digest digest in digests)
             {
                 List<DigestSource> digestSources = db.DigestSources
+                    .Include(ds => ds.Source)
                     .Where(ds => ds.DigestId == digest.Id)
                     .ToList();
 
