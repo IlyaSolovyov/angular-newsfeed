@@ -12,7 +12,7 @@ namespace NewsfeedClient.ViewModels
         public string Username { get; set; }
         public string AvatarFilename { get; set; }
         public List<DigestViewModel> Digests { get; set; }
-        public List<UserViewModel> Friends { get; set; }
+        public List<int> FriendIds { get; set; }
 
         public UserViewModel(User user)
         {
@@ -26,10 +26,18 @@ namespace NewsfeedClient.ViewModels
                 Digests.Add(new DigestViewModel(digest));
             }
 
-            Friends = new List<UserViewModel>();
-            foreach (User friend in user.Friends)
+            FriendIds = new List<int>();
+            foreach (Friendship friendship in user.Friendships)
             {
-                Friends.Add(new UserViewModel(friend));
+                if (friendship.Friend1Id == Id)
+                {
+                    FriendIds.Add(friendship.Friend2Id);
+                }
+                else
+                {
+                    FriendIds.Add(friendship.Friend1Id);
+                }
+              
             }
         }
       

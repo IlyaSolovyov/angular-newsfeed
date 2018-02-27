@@ -30,7 +30,7 @@ namespace NewsfeedClient
             });
 
             services.AddDbContext<NewsfeedContext>(options =>
-            options.UseSqlServer(Configuration["ConnectiongString"]));
+            options.UseSqlServer(Configuration["ConnectionString"]));
 
             // Automatically perform database migration
             services.BuildServiceProvider().GetService<NewsfeedContext>().Database.Migrate();

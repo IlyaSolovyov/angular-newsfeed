@@ -15,14 +15,14 @@ namespace NewsfeedClient.Models
 
         public List<Digest> Digests { get; set; }
         public List<Subscription> Subscriptions { get; set; }
-        public List<User> Friends { get; set; }
+        public List<Friendship> Friendships { get; set; }
 
         public User()
         {
             AvatarFilename = "avatarPlaceholder.png";
             Digests = new List<Digest>();
             Subscriptions = new List<Subscription>();
-            Friends = new List<User>();
+            Friendships = new List<Friendship>();
         }
     }
 }

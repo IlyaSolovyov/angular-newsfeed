@@ -53,19 +53,8 @@ namespace NewsfeedClient.Controllers
                 return NotFound("No such user found in the database.");
             }
 
-            List<UserViewModel> friends = new List<UserViewModel>();
-
-            List<User> friendModels = db.Users
-                .FirstOrDefault(user => user.Id == userId)
-                .Friends
-                .ToList();
-
-            foreach(User friendModel in friendModels)
-            {
-                friends.Add(new UserViewModel(friendModel));
-            }
-
-            return Ok(friends);
+            User user = db.Users.Single(u => u.Id == userId);      
+            return Ok(new UserViewModel(user).FriendIds);
         }
 
         // POST: api/users/5
