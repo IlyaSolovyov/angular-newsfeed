@@ -8,6 +8,7 @@ namespace NewsfeedClient.Models
 {
     public class Post
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime TimePosted { get; set; }       
         public string Content { get; set; }

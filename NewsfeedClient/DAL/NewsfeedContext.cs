@@ -33,7 +33,7 @@ namespace NewsfeedClient.DAL
                 .HasOne(s => s.Digest)
                 .WithMany(d => d.Subscribers)
                 .HasForeignKey(sub => sub.DigestId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
             #endregion
 
             #region DigestSources
@@ -61,13 +61,13 @@ namespace NewsfeedClient.DAL
                 .HasOne(f => f.Friend1)
                 .WithMany(u => u.Friendships)
                 .HasForeignKey(f => f.Friend1Id)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Friendship>()
                 .HasOne(f => f.Friend2)
                 .WithMany()
                 .HasForeignKey(f => f.Friend2Id)
-                .OnDelete(DeleteBehavior.Cascade);
+                 .OnDelete(DeleteBehavior.Restrict);
             #endregion
         }
 
