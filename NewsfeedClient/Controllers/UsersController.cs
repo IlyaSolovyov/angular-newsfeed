@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NewsfeedClient.DAL;
 using NewsfeedClient.Models;
 using NewsfeedClient.ViewModels;
@@ -33,6 +34,9 @@ namespace NewsfeedClient.Controllers
             List<DigestViewModel> digests = new List<DigestViewModel>();
 
             List<Subscription> subscriptions = db.Users
+                .Include(u => u.Subscriptions)
+                .ThenInclude(s => s.Digest)
+                .ThenInclude(d=>d.Creator)                   
                 .FirstOrDefault(user => user.Id == userId)
                 .Subscriptions;
 

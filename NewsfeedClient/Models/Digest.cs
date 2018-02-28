@@ -21,6 +21,7 @@ namespace NewsfeedClient.Models
 
         public Digest()
         {
+            IsPublic = true;
             Subscribers = new List<Subscription>();
             DigestSources = new List<DigestSource>();
         }
