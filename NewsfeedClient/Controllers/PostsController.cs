@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NewsfeedClient.DAL;
 using NewsfeedClient.Models;
 using NewsfeedClient.ViewModels;
 
@@ -13,96 +15,101 @@ namespace NewsfeedClient.Controllers
     [Route("api/[controller]")]
     public class PostsController : Controller
     {
-        private List<User> Users { get; set; }
-        private List<Digest> Digests { get; set; }
-        private List<Source> Sources { get; set; }
-        private List<Post> Posts { get; set; }
+        NewsfeedContext db;
 
-        public PostsController()
+        public PostsController(NewsfeedContext context)
         {
-            PopulateWithDummyData();
+            db = context;
         }
-
-        private void PopulateWithDummyData()
-        {
-            Posts = new List<Post>
-            {
-                new Post { Id = 1, Content = "Post number 1 via VK", TimePosted = DateTime.Now },
-                new Post { Id = 2, Content = "Post number 2 via VK", TimePosted = DateTime.Now.AddHours(-2) },
-                new Post { Id = 3, Content = "Post number 3 via Twitter", TimePosted = DateTime.Now.AddHours(3) },
-                new Post { Id = 4, Content = "Post number 4 via Twitter", TimePosted = DateTime.Now.AddMinutes(-22) },
-                new Post { Id = 5, Content = "Post number 5 via VK", TimePosted = DateTime.Now.AddMinutes(55) }
-            };
-
-            Sources = new List<Source>
-            {
-                new Source {Id = 1, Name = "VK Public Page #1", Service = "VK", Posts = Posts.GetRange(0, 2) },
-                new Source {Id = 2, Name = "Twitter Page #1", Service = "Twitter", Posts = Posts.GetRange(2, 2) },
-                new Source {Id = 3, Name = "VK Public Page #2",    Service = "VK", Posts = Posts.GetRange(4, 1) }
-            };
-
-            Digests = new List<Digest>
-            {
-                new Digest {Id = 1, Name = "Football", IsPublic = true, Sources = Sources.GetRange(0,1) },
-                new Digest {Id = 2, Name = "Angular", IsPublic = true, Sources = Sources.GetRange(1,2) },
-            };
-
-            Users = new List<User>
-            {
-                 new User { Id = 1, Digests = Digests }
-            };
-        }
-                
-
+        
+        //TODO: Optimize everything with .Include and .ThenInclude somehow.
         // GET: api/posts/digests/5
         [HttpGet("digests/{digestId}")]
-        public IEnumerable<PostViewModel> GetPostsByDigest(int digestId)
+        public IActionResult GetPostsByDigest(int digestId)
         {
-            List<PostViewModel> posts = new List<PostViewModel>();
-            List<Post> postModels = new List<Post>();
+            if (!db.Digests.Any(d => d.Id == digestId))
+            {
+                return NotFound("No such digest found in the database.");
+            }
 
-            List<Source> sources = Digests
-                .FirstOrDefault(digest => digest.Id == digestId)
-                .Sources
+            List<DigestSource> digestSources = db.DigestSources
+                .Include(ds => ds.Source)
+                .Where(ds => ds.DigestId == digestId)
                 .ToList();
 
-            foreach(Source source in sources)
+            List<Source> sources = new List<Source>();
+            foreach (DigestSource ds in digestSources)
             {
-                postModels = source.Posts.ToList();
-                foreach(Post postModel in postModels)
+                sources.Add(ds.Source);
+            }
+
+            List<Post> postModels = new List<Post>();
+            List<PostViewModel> posts = new List<PostViewModel>();
+            foreach (Source source in sources)
+            {
+                postModels = db.Posts
+                    .Where(post => post.SourceId == source.Id)
+                    .ToList();
+                foreach (Post postModel in postModels)
                 {
                     posts.Add(new PostViewModel(postModel, source));
                 }
             }
 
-            return posts
-                .OrderByDescending(post => post.TimePosted);
+            return Ok(posts
+                .OrderByDescending(post => post.TimePosted));
         }
 
+        //TODO: Optimize everything with .Include and .ThenInclude somehow.
         // GET: api/posts/users/5
         [HttpGet("users/{userId}")]
-        public IEnumerable<PostViewModel> GetPostsByUser(int userId)
+        public IActionResult GetPostsByUser(int userId)
         {
+            if (!db.Users.Any(u => u.Id == userId))
+            {
+                return NotFound("No such user found in the database.");
+            }
+
+            User user = db.Users
+                .Include(u =>u.Subscriptions)
+                .ThenInclude(s => s.Digest)
+                .FirstOrDefault(u => u.Id == userId);
+
+            List<Digest> digests = new List<Digest>();
+            foreach(Subscription subscription in user.Subscriptions)
+            {
+                digests.Add(subscription.Digest);
+            }
+
+            List<Post> postModels = new List<Post>();
             List<PostViewModel> posts = new List<PostViewModel>();
-
-            List<Digest> digests = Users
-                .FirstOrDefault(user => user.Id == userId)
-                .Digests
-                .ToList();
-
             foreach (Digest digest in digests)
             {
-                foreach (Source source in digest.Sources)
+                List<DigestSource> digestSources = db.DigestSources
+                    .Include(ds => ds.Source)
+                    .Where(ds => ds.DigestId == digest.Id)
+                    .ToList();
+
+                List<Source> sources = new List<Source>();
+                foreach (DigestSource ds in digestSources)
                 {
-                    foreach(Post postModel in source.Posts)
+                    sources.Add(ds.Source);
+                }
+
+                foreach (Source source in sources)
+                {
+                    postModels = db.Posts
+                        .Where(post => post.SourceId == source.Id)
+                        .ToList();
+                    foreach (Post postModel in postModels)
                     {
                         posts.Add(new PostViewModel(postModel, source));
                     }
                 }
             }
 
-            return posts
-                .OrderByDescending(post => post.TimePosted);
+            return Ok(posts
+                .OrderByDescending(post => post.TimePosted));
         }
 
         // POST: api/posts

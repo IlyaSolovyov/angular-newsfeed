@@ -10,8 +10,7 @@ namespace NewsfeedClient.ViewModels
     {
         public int Id { get; set; }
         public DateTime TimePosted { get; set; }
-        public string Service { get; set; }
-        public string Source { get; set; }
+        public SourceViewModel Source { get; set; }
         public string Content { get; set; }
         public Object[] Attachments { get; set; }
 
@@ -19,8 +18,7 @@ namespace NewsfeedClient.ViewModels
         {
             Id = post.Id;
             TimePosted = post.TimePosted;
-            Service = source.Service;
-            Source = source.Name;
+            Source = new SourceViewModel(source);
             Content = post.Content;
             Attachments = post.Attachments;
         }

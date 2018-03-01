@@ -12,12 +12,17 @@ namespace NewsfeedClient.ViewModels
         public string Name { get; set; }
         public string Creator { get; set; }
         public Boolean IsPublic { get; set; }
+        public List<SourceViewModel> Sources { get; set; }
 
         public DigestViewModel(Digest digest)
         {
             Id = digest.Id;
             Name = digest.Name;
-
+            Sources = new List<SourceViewModel>();
+            foreach(DigestSource ds in digest.DigestSources)
+            {
+                Sources.Add(new SourceViewModel(ds.Source));
+            }
             Creator = digest.Creator!=null ? digest.Creator.Username : "Unknown author";
             IsPublic = digest.IsPublic;
         }
