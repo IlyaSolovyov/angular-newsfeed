@@ -61,7 +61,7 @@ namespace NewsfeedClient.Controllers
             return Ok(new UserViewModel(user).FriendIds);
         }
 
-        // POST: api/users/5
+        // GET: api/users/5
         [HttpGet("{userId}")]
         public IActionResult GetUserData(int userId)
         {
