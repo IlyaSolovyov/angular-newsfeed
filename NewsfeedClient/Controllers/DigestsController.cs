@@ -32,6 +32,8 @@ namespace NewsfeedClient.Controllers
             }
 
             Digest digest = db.Digests
+                .Include(d=> d.DigestSources)
+                .ThenInclude(ds=>ds.Source)
                 .FirstOrDefault(d => d.Id == digestId);
 
             return Ok(new DigestViewModel(digest))  ;

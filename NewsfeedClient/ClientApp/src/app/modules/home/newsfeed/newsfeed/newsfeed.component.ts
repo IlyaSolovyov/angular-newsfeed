@@ -23,6 +23,10 @@ export class NewsfeedComponent {
       .subscribe((user: User) => {
         this.currentUser = user;
       });
+    this.usersService.getDigestsByUser(userId)
+      .subscribe((digests: Digest[]) => {
+        this.currentUser.digests = digests;
+      });
   }
 }
 
