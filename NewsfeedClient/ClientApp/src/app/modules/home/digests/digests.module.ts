@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../shared/material.module';
 import { DigestsRoutingModule } from './digests-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -23,6 +23,7 @@ import { DigestCreationComponent } from './digest-creation/digest-creation.compo
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     DigestsRoutingModule,
     FlexLayoutModule

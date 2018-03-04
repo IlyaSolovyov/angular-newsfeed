@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
     selector: 'digests-digest-creation',
@@ -8,7 +9,11 @@ import { Component } from '@angular/core';
 
 export class DigestCreationComponent {
 
-    constructor() {
+  constructor(
+    public dialogRef: MatDialogRef<DigestCreationComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-    }
+  cancel(): void {
+    this.dialogRef.close();
+  }
 }

@@ -4,3 +4,7 @@
 div.mat-tab-body-wrapper{
     flex:1;
 }
+
+body {
+  font-family: Roboto, Arial, sans-serif;
+}
