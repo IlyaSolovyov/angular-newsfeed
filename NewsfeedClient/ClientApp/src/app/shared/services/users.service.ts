@@ -12,7 +12,12 @@ export class UsersService {
   {
     return this.http.get<User>('/api/users/' + userId);
   }
+
   getDigestsByUser(userId: number) {
+    return this.http.get<Digest[]>('/api/users/' + userId + '/digests');
+  }
+
+  getSubscriptionsByUser(userId: number) {
     return this.http.get<Digest[]>('/api/users/' + userId + '/subscriptions');
   }
 
