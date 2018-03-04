@@ -11,6 +11,6 @@ export class SubscriptionsService {
   }
 
   unsubscribeFromDigest(digestId: number, userId: string) {
-    this.http.delete('/api/subscriptions/' + digestId, userId);
+    this.http.request('delete', '/api/subscriptions/' + digestId, { body: [userId] });
   }
 }
