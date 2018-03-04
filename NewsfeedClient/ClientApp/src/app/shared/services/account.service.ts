@@ -18,7 +18,7 @@ export class AccountService {
 
   register(username: string, email: string, password: string) {
     const formData = new FormData();
-    formData.append('username', email);
+    formData.append('username', username);
     formData.append('email', email);
     formData.append('password', password);
 
