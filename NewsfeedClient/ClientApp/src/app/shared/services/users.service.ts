@@ -23,6 +23,6 @@ export class UsersService {
 
   getFriendsByUser(userId: number) {
     return this.http.get<User[]>('api/users/' + userId + '/friends');
-  }
+  } 
 
 }
