@@ -15,6 +15,8 @@ import { DigestCardComponent } from './digest-card/digest-card.component';
 import { SubscriptionsListComponent } from './subscriptions-list/subscriptions-list.component';
 import { SubscriptionCardComponent } from './subscription-card/subscription-card.component';
 import { DigestsHubComponent } from './digests-hub/digests-hub.component';
+import { DigestCreationComponent } from './digest-creation/digest-creation.component';
+
 
 
 @NgModule({
@@ -31,12 +33,16 @@ import { DigestsHubComponent } from './digests-hub/digests-hub.component';
     DigestsListComponent,
     DigestCardComponent,
     SubscriptionsListComponent,
-    SubscriptionCardComponent
+    SubscriptionCardComponent,
+    DigestCreationComponent
   ],
   providers: [
     UsersService,
     DigestsService,
     SubscriptionsService
+  ],
+  entryComponents: [
+    DigestCreationComponent
   ]
 })
 export class DigestsModule {

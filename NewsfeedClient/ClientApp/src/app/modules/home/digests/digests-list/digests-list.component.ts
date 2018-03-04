@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { DigestsService } from '../../../../shared/services/digests.service';
 import { Digest } from '../../../../shared/models/digest';
 import { UsersService } from '../../../../shared/services/users.service';
+import { MatDialog } from '@angular/material';
+import { DigestCreationComponent } from '../digest-creation/digest-creation.component';
 
 @Component({
     selector: 'digests-digests-list',
@@ -14,7 +16,7 @@ export class DigestsListComponent {
   currentUserId: number;
   digests: Digest[];
 
-  constructor(private digestsService: DigestsService, private usersService:UsersService) { }
+  constructor(private digestsService: DigestsService, private usersService: UsersService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.currentUserId = this.getUserId();
@@ -31,5 +33,14 @@ export class DigestsListComponent {
         this.digests = digests;
         console.log("Pushed " + digests.length + " digests by user #" + userId);
       });
+  }
+
+  createDigest()
+  {
+    let dialogRef = this.dialog.open(DigestCreationComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }
