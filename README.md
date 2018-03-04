@@ -30,8 +30,8 @@ Client application for a social network newsfeed service, built with ASP.NET Cor
   *  :heavy_check_mark: **Routing**: done; all routes are protected by AuthGuard and AnonymousGuard services, unaccessible depending on local storage contents.
   
 * Server-side: 
-  *   :x: **Registration**: echoes username without saving the data.
-  *   :negative_squared_cross_mark: **Authorization**: input data is compared with the fake-database model data; server returns error message in case of authorization error; upon successful authorization, only the account ID is returned (instead of JWT token).
+  *   :heavy_check_mark: **Registration**: done; data is stored in database
+  *   :negative_squared_cross_mark: **Authorization**: input data is compared with the database data; server returns error message in case of authorization error; upon successful authorization, only the account ID is returned (instead of JWT token).
   *   :negative_squared_cross_mark: **Routing**: none of the methods are protected from accessing due to lack of JWT token system.
   
   
@@ -50,21 +50,21 @@ Client application for a social network newsfeed service, built with ASP.NET Cor
 * Server-side: 
   *  :heavy_check_mark: **Models and resources**: general entities are set up, each controller returns a specific view model (if required) without any sensitive or unneeded data.
   *  :heavy_check_mark: **Data ordering**: both "Get posts by digests" and "Get posts from all digests by user" methods are working and return sorted post lists as JSON responses.
-  *  :x: **Data retrieval**: all the data is faked in the controllers; no database or backend interaction whatsoever.
+  *  :negative_squared_cross_mark: **Data retrieval**: data is retrieved from the database; no API interactions.
   
   
 ###  Digests
-* :x: Client-side: no work done yet. 
-  *  :x: **Displaing user digests**:
-  *  :x: **Creating new digests**: 
-  *  :x: **Detailed Post view**:
+* Client-side:
+  *  :heavy_check_mark: **Displaing user digests**:
+  *  :heavy_check_mark: **Displaing user subscriptions**:
+  *  :heavy_check_mark: **Creating new digests**: 
   *  :x: **Editing digests**:
   *  :x: **Browsing for digests**:
   
 * Server-side: 
-  *  :negative_squared_cross_mark: **Digests domain model**: base models set up.
-  *  :x: **Digests Controller methods and API endpoints**:
-  *  :x: **Database interaction**:
+  *  :heavy_check_mark: **Digests domain model**: base models set up.
+  *  :heavy_check_mark: **Digests Controller methods and API endpoints**:
+  *  :heavy_check_mark: **Database interaction**:
   *  :x: **Separating public and private digests**:
   
   
@@ -82,7 +82,7 @@ Client application for a social network newsfeed service, built with ASP.NET Cor
 ###  Global styles and settings 
 *  :x: **CSS Styles and Themes**:
 *  :x: **Transition to Flex Layout**: 
-*  :x: **Returning digests created and subscribed to by user**:
-*  :x: **Azure hosting**
+*  :heavy_check_mark: **Returning digests created and subscribed to by user**:
+*  :negative_squared_cross_mark: **Azure hosting**
 
 
