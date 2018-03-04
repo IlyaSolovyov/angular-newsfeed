@@ -4,7 +4,7 @@ import { AnonymousGuard } from '../../shared/guards/anonymous.guard';
 import { AuthGuard } from '../../shared/guards/auth.guard';
 
 import { AccountComponent } from './account/account.component';
-import { LoginComponent } from './login/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 

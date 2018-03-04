@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { AccountService } from '../../../../shared/services/account.service';
+import { AccountService } from '../../../shared/services/account.service';
 
 @Component({
     selector: 'account-login',

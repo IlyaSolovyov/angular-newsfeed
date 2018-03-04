@@ -1,0 +1,16 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Your digests: {{digests?.length}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div fxLayout="row">
+    <digests-digest-card *ngFor="let digest of digests" [digest]="digest">
+    </digests-digest-card>
+  </div>
+
+  <mat-action-row >
+    <button mat-button (click)="createDigest()">Create new digest</button>
+  </mat-action-row>
+
+</mat-expansion-panel>

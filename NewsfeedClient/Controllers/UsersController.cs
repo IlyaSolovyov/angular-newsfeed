@@ -22,7 +22,28 @@ namespace NewsfeedClient.Controllers
             db = context;
         }
 
-         
+        // GET: api/users/5/digests
+        [HttpGet("{userId}/digests/")]
+        public IActionResult GetDigestsByUser(int userId)
+        {
+            if (!db.Users.Any(u => u.Id == userId))
+            {
+                return NotFound("No such user found in the database.");
+            }
+            List<DigestViewModel> digests = new List<DigestViewModel>();
+
+            List<Digest> digestsModels = db.Digests
+                .Where(d => d.CreatorId == userId)
+                .ToList();
+           
+            foreach (Digest digest in digestsModels)
+            {
+                digests.Add(new DigestViewModel(digest));
+            }
+
+            return Ok(digests);
+        }
+
         // GET: api/users/5/subscriptions
         [HttpGet("{userId}/subscriptions/")]
         public IActionResult GetSubscriptionsByUser(int userId)

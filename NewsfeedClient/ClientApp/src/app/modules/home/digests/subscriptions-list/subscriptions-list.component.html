@@ -1,0 +1,13 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Your subscriptions: {{subscriptions?.length}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div fxLayout="row">
+    <digests-subscription-card *ngFor="let subscription of subscriptions" [subscription]="subscription">
+    </digests-subscription-card>
+  </div>
+
+
+</mat-expansion-panel>
