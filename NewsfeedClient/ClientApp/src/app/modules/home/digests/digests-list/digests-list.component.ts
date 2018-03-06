@@ -48,11 +48,6 @@ export class DigestsListComponent {
       });
   }
 
-
-  isUserSubscribed(digest: Digest) {
-    return this.subscriptions.includes(digest);
-  }
-
   createDigest(){
     this.newDigestName = '';
 

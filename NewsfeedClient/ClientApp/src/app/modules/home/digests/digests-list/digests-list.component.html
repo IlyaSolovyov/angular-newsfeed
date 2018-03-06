@@ -5,7 +5,7 @@
     </mat-panel-title>
   </mat-expansion-panel-header>
   <div fxLayout="row">
-    <digests-digest-card *ngFor="let digest of digests" [digest]="digest" [subscribed]="isUserSubscribed(digest)">
+    <digests-digest-card *ngFor="let digest of digests" [digest]="digest">
     </digests-digest-card>
   </div>
 
