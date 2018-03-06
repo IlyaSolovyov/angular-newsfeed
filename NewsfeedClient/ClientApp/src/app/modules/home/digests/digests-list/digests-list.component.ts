@@ -4,6 +4,7 @@ import { Digest } from '../../../../shared/models/digest';
 import { UsersService } from '../../../../shared/services/users.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { DigestCreationComponent } from '../digest-creation/digest-creation.component';
+import { CommunicationService } from '../../../../shared/services/communication.service';
 
 @Component({
     selector: 'digests-digests-list',
@@ -15,18 +16,28 @@ export class DigestsListComponent {
 
   currentUserId: number;
   digests: Digest[];
+  subscriptions: Digest[];
   newDigestName: string;
 
   constructor(private digestsService: DigestsService, private usersService: UsersService,
-    public dialog: MatDialog, private snackBar: MatSnackBar) { }
+    private communicationService: CommunicationService,
+    private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.currentUserId = this.getUserId();
-    this.getDigests(this.currentUserId);
+    this.fetchData(this.currentUserId); 
   }
 
   getUserId() {
     return localStorage['currentUser'];
+  }
+
+  fetchData(userId: number){
+    this.usersService.getSubscriptionsByUser(userId)
+      .subscribe((subscriptions: Digest[]) => {
+        this.subscriptions = subscriptions;
+        this.getDigests(userId);
+      });
   }
 
   getDigests(userId: number) {
@@ -37,24 +48,35 @@ export class DigestsListComponent {
       });
   }
 
-  createDigest()
-  {
+
+  isUserSubscribed(digest: Digest) {
+    return this.subscriptions.includes(digest);
+  }
+
+  createDigest(){
     this.newDigestName = '';
+
     let dialogRef = this.dialog.open(DigestCreationComponent, {
       data: { newDigestName: this.newDigestName }
     });
 
     dialogRef.afterClosed().subscribe(result => {
+
       this.newDigestName = result;
-      console.log('Value of newDigestName: ' + this.newDigestName);
-      if (this.newDigestName.length>0) {
+      if (this.newDigestName.length > 0) {
+
         this.digestsService.createDigest(this.newDigestName, this.currentUserId.toString())
           .subscribe((response: string) => {
+
             this.snackBar.open(response, 'Okay', {
               duration: 5000,
             });
+
+            this.communicationService.triggerSubscriptionsUpdate();
             this.getDigests(this.currentUserId);
+
           });
+
       }
     });
 

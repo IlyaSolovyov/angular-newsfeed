@@ -9,7 +9,7 @@ import { Digest } from '../../../../shared/models/digest';
 
 export class DigestCardComponent {
     @Input() public digest: Digest;
-
+    @Input() public subscribed: boolean;
     constructor() {
 
     }
