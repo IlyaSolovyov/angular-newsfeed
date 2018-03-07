@@ -27,10 +27,20 @@ export class DigestCardComponent {
     ngOnInit() {
       this.currentUserId = this.getUserId();
       this.checkForSubscription(this.currentUserId)
+      this.communicationService.subscriptionsUpdateNeeded
+        .subscribe(result => this.updateSubscription(result, this.currentUserId));
     }
 
     getUserId() {
       return localStorage['currentUser'];
+    }
+
+    updateSubscription(trigger: boolean, userId: number) {
+      if (trigger == true) {
+        console.log("Update found!");
+        this.checkForSubscription(userId);
+        this.communicationService.confirmSubscriptionsUpdate();
+      }
     }
 
     checkForSubscription(userId: number) {
