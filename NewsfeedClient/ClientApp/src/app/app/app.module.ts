@@ -15,6 +15,7 @@ import { AuthGuard } from '../shared/guards/auth.guard';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CommunicationService } from '../shared/services/communication.service';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   ],
   providers: [
     AuthGuard,
-    AnonymousGuard
+    AnonymousGuard,
+    CommunicationService
   ],
   bootstrap: [AppComponent]
 })

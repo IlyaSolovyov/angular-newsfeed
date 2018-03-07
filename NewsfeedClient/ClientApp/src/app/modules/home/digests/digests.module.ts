@@ -16,6 +16,8 @@ import { SubscriptionsListComponent } from './subscriptions-list/subscriptions-l
 import { SubscriptionCardComponent } from './subscription-card/subscription-card.component';
 import { DigestsHubComponent } from './digests-hub/digests-hub.component';
 import { DigestCreationComponent } from './digest-creation/digest-creation.component';
+import { SourceListEditComponent } from './source-list-edit/source-list-edit.component';
+import { SourceCardComponent } from './source-card/source-card.component';
 
 
 
@@ -35,7 +37,9 @@ import { DigestCreationComponent } from './digest-creation/digest-creation.compo
     DigestCardComponent,
     SubscriptionsListComponent,
     SubscriptionCardComponent,
-    DigestCreationComponent
+    DigestCreationComponent,
+    SourceListEditComponent,
+    SourceCardComponent
   ],
   providers: [
     UsersService,
@@ -43,7 +47,8 @@ import { DigestCreationComponent } from './digest-creation/digest-creation.compo
     SubscriptionsService
   ],
   entryComponents: [
-    DigestCreationComponent
+    DigestCreationComponent,
+    SourceListEditComponent
   ]
 })
 export class DigestsModule {

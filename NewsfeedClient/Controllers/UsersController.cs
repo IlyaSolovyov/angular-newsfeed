@@ -33,6 +33,9 @@ namespace NewsfeedClient.Controllers
             List<DigestViewModel> digests = new List<DigestViewModel>();
 
             List<Digest> digestsModels = db.Digests
+                .Include(d => d.Creator)
+                .Include(d=>d.DigestSources)
+                .ThenInclude(ds=>ds.Source)
                 .Where(d => d.CreatorId == userId)
                 .ToList();
            

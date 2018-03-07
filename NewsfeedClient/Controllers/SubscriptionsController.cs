@@ -12,7 +12,7 @@ namespace NewsfeedClient.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class SubscriptionsController : Controller
-    {
+    {  //everything will come from JWT token in request header so logic is a little different
         NewsfeedContext db;
 
         public SubscriptionsController(NewsfeedContext context)
@@ -20,9 +20,9 @@ namespace NewsfeedClient.Controllers
             db = context;
         }
 
-        // POST: api/subscriptions/5
-        [HttpPost("{digestId}")]
-        public IActionResult SubscribeUserToDigest([FromBody] int userId, int digestId)
+        // POST: api/subscriptions/5/digests/4
+        [HttpPost("{userId}/digests/{digestId}")]
+        public IActionResult SubscribeUserToDigest(int userId, int digestId)
         {
             if(false) //no way to check for accounts yet
             {
@@ -55,9 +55,9 @@ namespace NewsfeedClient.Controllers
             return Ok("Successfully subscribed to " + digest.Name + "." );
         }
 
-        // DELETE: api/subscriptions/5
-        [HttpDelete("{digestId}")]
-        public IActionResult UnsubscribeUserFromDigest([FromBody] int userId, int digestId)
+        // DELETE: api/subscriptions/5/digests/4
+        [HttpDelete("{userId}/digests/{digestId}")]
+        public IActionResult UnsubscribeUserFromDigest(int userId, int digestId)
         {
             if (false) //no way to check for accounts yet
             {
