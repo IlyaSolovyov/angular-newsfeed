@@ -1,20 +1,19 @@
-
-<mat-card class="post-card">
+<mat-card >
   <mat-card-header>
     <mat-card-title>{{digest.name}}</mat-card-title>
     <mat-card-subtitle>Subscribed: {{subscribed}}</mat-card-subtitle>
+    <mat-card-subtitle>Sources: {{digest.sources.length}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="First attachment of post">
   <mat-card-content>
     <p>
-      Quisque lacinia augue sed lorem finibus, sed aliquet elit dignissim.
-      Donec mattis, nibh quis feugiat tincidunt, nulla est commodo tellus,
-      ut rhoncus nunc mi sit amet est. Aenean venenatis maximus faucibus.
-      Morbi gravida arcu eget pretium tincidunt...
+     Digest description goes here.
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click)="unsubscribe(currentUserId)">Unsubscribe</button>
-    <button mat-button (click)="subscribe(currentUserId)">Subscribe</button>
+    <button mat-button (click)="openEditSourcesDialog(digest.id)">Edit sources</button>
+    <button mat-button (click)="unsubscribe(currentUserId)" *ngIf="subscribed; else subscribeButton">Unsubscribe</button>
+    <ng-template #subscribeButton>
+      <button mat-button (click)="subscribe(currentUserId)">Subscribe</button>
+    </ng-template>
   </mat-card-actions>
 </mat-card>

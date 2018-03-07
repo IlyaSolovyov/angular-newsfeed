@@ -16,4 +16,15 @@ export class CommunicationService {
   confirmSubscriptionsUpdate() {
     this.subscriptionsUpdateNeededSource.next(false);
   }
+
+  private sourcesUpdateNeededSource = new BehaviorSubject<boolean>(false);
+  sourcesUpdateNeeded = this.sourcesUpdateNeededSource.asObservable();
+
+  triggerSourcesUpdate() {
+    this.sourcesUpdateNeededSource.next(true);
+  }
+
+  confirmSourcesUpdate() {
+    this.sourcesUpdateNeededSource.next(false);
+  }
 }

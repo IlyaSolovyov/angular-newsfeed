@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Edit source list</h1>
+<div mat-dialog-content>
+  <p>Sources: {{sources?.length}}</p>
+  <div fxLayout="column">
+    <digests-source-card *ngFor="let source of sources" [source]="source" [digestId] ="digestId">
+    </digests-source-card>
+  </div>
+  <form (ngSubmit)="addSource(digestId, name, service, url)" fxLayout="column">
+    <p>Add new source</p>
+
+    <mat-form-field>
+      <input matInput placeholder="Name" maxlength="32" [formControl]="nameFormControl" required [(ngModel)]="name">
+      <mat-error *ngIf="nameFormControl.invalid">{{getNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Service" [(value)]="service" [formControl]="serviceFormControl" required>
+        <mat-option>None</mat-option>
+        <mat-option value="vk">VK</mat-option>
+        <mat-option value="twitter">Twitter</mat-option>
+      </mat-select>
+      <mat-error *ngIf="serviceFormControl.invalid">{{getServiceErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Url" maxlength="32" [formControl]="urlFormControl" required [(ngModel)]="url">
+      <mat-error *ngIf="urlFormControl.invalid">{{getUrlErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions>
+      <button mat-raised-button type="submit" [disabled]="nameFormControl.invalid || serviceFormControl.invalid || urlFormControl.invalid">Add source</button>
+    </div>
+  </form>
+</div>
+

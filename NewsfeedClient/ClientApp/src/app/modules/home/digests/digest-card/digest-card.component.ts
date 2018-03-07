@@ -2,8 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Digest } from '../../../../shared/models/digest';
 import { UsersService } from '../../../../shared/services/users.service';
 import { SubscriptionsService } from '../../../../shared/services/subscriptions.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { CommunicationService } from '../../../../shared/services/communication.service';
+import { Source } from '../../../../shared/models/source';
+import { SourceListEditComponent } from '../source-list-edit/source-list-edit.component';
+import { DigestsService } from '../../../../shared/services/digests.service';
 
 
 @Component({
@@ -18,7 +21,8 @@ export class DigestCardComponent {
     public subscribed: boolean;
     currentUserId: number;
     constructor(private usersService: UsersService, private subscriptionsService: SubscriptionsService,
-      private snackBar: MatSnackBar, private communicationService: CommunicationService,) { }
+      private snackBar: MatSnackBar, private communicationService: CommunicationService,
+      private dialog: MatDialog, private digestsService: DigestsService) { }
 
     ngOnInit() {
       this.currentUserId = this.getUserId();
@@ -64,4 +68,18 @@ export class DigestCardComponent {
         });;
     }
 
+    openEditSourcesDialog(digestId: number)
+    {
+      let source: Source;
+      let dialogRef = this.dialog.open(SourceListEditComponent, {
+        data: { digestId: digestId }
+      });
+
+      dialogRef.afterClosed().subscribe(() => {
+        this.digestsService.getDigestData(digestId).subscribe(updatedDigestData => {
+          this.digest = updatedDigestData;
+        }
+
+      });
+    }
 }
