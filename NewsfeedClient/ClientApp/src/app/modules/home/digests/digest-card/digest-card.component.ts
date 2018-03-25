@@ -90,6 +90,6 @@ export class DigestCardComponent {
           this.digest = updatedDigestData;
         }
 
-      });
+      )});
     }
 }
