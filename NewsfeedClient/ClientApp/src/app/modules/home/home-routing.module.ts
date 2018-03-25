@@ -21,7 +21,7 @@ const pagesRoutes: Routes = [
       { path: '', redirectTo: 'newsfeed', pathMatch: 'full' },
     ]
   }
-  
+
 ];
 
 @NgModule({

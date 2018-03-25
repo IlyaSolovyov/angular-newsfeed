@@ -28,7 +28,7 @@ export class NewsfeedComponent {
     this.usersService.getSubscriptionsByUser(userId)
       .subscribe((digests: Digest[]) => {
         this.digests = digests;
-        console.log("Pushed " + digests.length + " digests by user #" + userId);
+        console.log('Pushed ' + digests.length + ' digests by user #' + userId);
       });
   }
 }

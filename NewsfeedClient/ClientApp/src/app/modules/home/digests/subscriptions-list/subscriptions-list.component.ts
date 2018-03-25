@@ -33,13 +33,13 @@ export class SubscriptionsListComponent {
     this.usersService.getSubscriptionsByUser(userId)
       .subscribe((subscriptions: Digest[]) => {
         this.subscriptions = subscriptions;
-        console.log("Pushed " + subscriptions.length + " subscriptions by user #" + userId);
+        console.log('Pushed ' + subscriptions.length + ' subscriptions by user #' + userId);
       });
   }
 
   updateSubscriptions(trigger: boolean, userId: number) {
     if (trigger == true) {
-      console.log("Update found!");
+      console.log('Update found!');
       this.getSubscriptions(userId);
       this.communicationService.confirmSubscriptionsUpdate();
     }

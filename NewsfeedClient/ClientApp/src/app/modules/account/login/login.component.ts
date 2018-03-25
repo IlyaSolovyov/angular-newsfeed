@@ -37,14 +37,14 @@ export class LoginComponent {
       .subscribe(
       data => {
         localStorage.setItem('currentUser', JSON.stringify(data));
-        this.snackBar.open('Successfully signed in as ' + localStorage.getItem("currentUser").toString(), 'Okay', {duration: 2000});
+        this.snackBar.open('Successfully signed in as ' + localStorage.getItem('currentUser').toString(), 'Okay', {duration: 2000});
         this.router.navigate(['/home']);
       },
       error => {
         // login failed so display error
-        this.snackBar.open('Error: ' + error["error"], 'Okay', { duration: 5000 });
+        this.snackBar.open('Error: ' + error['error'], 'Okay', { duration: 5000 });
       });
   }
 
 }
-   
+
