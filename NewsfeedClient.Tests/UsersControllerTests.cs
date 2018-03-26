@@ -1,4 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.EntityFrameworkCore;
+using Moq;
+using NewsfeedClient.Controllers;
+using NewsfeedClient.DAL;
+using NewsfeedClient.Models;
+using NewsfeedClient.Tests.Helpers;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +16,24 @@ namespace NewsfeedClient.Tests
     [TestFixture]
     public class UsersControllerTests
     {
-        [Test]
-        public void TestMethod()
-        {
+        UsersController controller;
 
-            // TODO: Add your test code here
-            Assert.Pass("Your first passing test");
+        [SetUp]
+        public void MockControllerSetUp()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<NewsfeedContext>();
+            optionsBuilder.UseInMemoryDatabase("fakeDb");
+            var fakeContext = new NewsfeedContext(optionsBuilder.Options);
+
+            fakeContext.Users=DbContextHelper.GetQueryableMockDbSet
+                (
+                    new User() { Id = 1 },
+                    new User() { Id = 2 },
+                    new User() { Id = 3 }
+                );
+
+            controller = new UsersController(fakeContext);        
         }
+    
     }
 }
