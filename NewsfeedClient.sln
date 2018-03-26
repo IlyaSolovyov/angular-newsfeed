@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsfeedClient", "NewsfeedClient\NewsfeedClient.csproj", "{F41C1991-9771-40B6-89BE-549C1A43A94A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsfeedClient.Tests", "NewsfeedClient.Tests\NewsfeedClient.Tests.csproj", "{34F8B274-71A2-452C-A5A5-769F8FF8A10C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F41C1991-9771-40B6-89BE-549C1A43A94A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F41C1991-9771-40B6-89BE-549C1A43A94A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F41C1991-9771-40B6-89BE-549C1A43A94A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34F8B274-71A2-452C-A5A5-769F8FF8A10C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34F8B274-71A2-452C-A5A5-769F8FF8A10C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34F8B274-71A2-452C-A5A5-769F8FF8A10C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34F8B274-71A2-452C-A5A5-769F8FF8A10C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
