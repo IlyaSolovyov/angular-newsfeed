@@ -87,5 +87,41 @@ namespace NewsfeedClient.Tests
         }
         #endregion
 
+        #region GetUserData
+        [Test]
+        public void GetUserData_NonExistingUser_ReturnsNotFound()
+        {
+            //Arrange
+            int userId = -1;
+
+            //Act
+            IActionResult actionResult = controller.GetUserData(userId);
+
+            //Assert
+            Assert.NotNull(actionResult);
+            Assert.That(actionResult, Is.InstanceOf<NotFoundObjectResult>());
+        }
+
+        [Test]
+        public void GetUserData_ExistingUser_ReturnsObject()
+        {
+            //Arrange
+            int userId = 1;
+
+            //Act
+            IActionResult actionResult = controller.GetUserData(userId);
+
+            //Assert
+            Assert.NotNull(actionResult);
+
+            OkObjectResult okResult = actionResult as OkObjectResult;
+            Assert.NotNull(okResult);
+
+            var model = okResult.Value as UserViewModel;
+            Assert.NotNull(model);
+
+            Assert.That(model.Id == fakeContext.Users.First(u => u.Id == userId).Id);   
+        }
+        #endregion
     }
 }
