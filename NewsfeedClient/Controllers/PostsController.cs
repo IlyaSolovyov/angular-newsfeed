@@ -112,25 +112,5 @@ namespace NewsfeedClient.Controllers
                 .OrderByDescending(post => post.TimePosted));
         }
 
-        // POST: api/posts
-        [HttpPost]
-        public IActionResult Post([FromBody]string value)
-        {
-            return Ok("POST method working");
-        }
-
-        // PUT: api/posts/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]string value)
-        {
-            return Ok("PUT method working");
-        }
-
-        // DELETE: api/posts/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            return Ok("DELETE method working");
-        }
     }
 }
