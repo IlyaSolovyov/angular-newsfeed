@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using NewsfeedClient.DAL;
 using NewsfeedClient.Models;
 using NewsfeedClient.ViewModels;
+using Newtonsoft.Json;
 
 namespace NewsfeedClient.Controllers
 {
@@ -25,39 +27,50 @@ namespace NewsfeedClient.Controllers
         //TODO: Optimize everything with .Include and .ThenInclude somehow.
         // GET: api/posts/digests/5
         [HttpGet("digests/{digestId}")]
-        public IActionResult GetPostsByDigest(int digestId)
+        public async Task<IActionResult> GetPostsByDigestAsync(int digestId)
         {
-            if (!db.Digests.Any(d => d.Id == digestId))
+            //if (!db.Digests.Any(d => d.Id == digestId))
+            //{
+            //    return NotFound("No such digest found in the database.");
+            //}
+
+            //List<DigestSource> digestSources = db.DigestSources
+            //    .Include(ds => ds.Source)
+            //    .Where(ds => ds.DigestId == digestId)
+            //    .ToList();
+
+            //List<Source> sources = new List<Source>();
+            //foreach (DigestSource ds in digestSources)
+            //{
+            //    sources.Add(ds.Source);
+            //}
+
+            //List<Post> postModels = new List<Post>();
+            //List<PostViewModel> posts = new List<PostViewModel>();
+            //foreach (Source source in sources)
+            //{
+            //    postModels = db.Posts
+            //        .Where(post => post.SourceId == source.Id)
+            //        .ToList();
+            //    foreach (Post postModel in postModels)
+            //    {
+            //        posts.Add(new PostViewModel(postModel, source));
+            //    }
+            //}
+
+            //return Ok(posts
+            //    .OrderByDescending(post => post.TimePosted));
+
+            using (var client = new HttpClient())
             {
-                return NotFound("No such digest found in the database.");
+                client.BaseAddress = new Uri("http://localhost:8133/api/");
+                var response = await client.GetAsync("posts/digests/" + digestId);
+
+                var stringResult = await response.Content.ReadAsStringAsync();
+                var postList = JsonConvert.DeserializeObject<List<PostViewModel>>(stringResult);
+                return Ok(postList);
+
             }
-
-            List<DigestSource> digestSources = db.DigestSources
-                .Include(ds => ds.Source)
-                .Where(ds => ds.DigestId == digestId)
-                .ToList();
-
-            List<Source> sources = new List<Source>();
-            foreach (DigestSource ds in digestSources)
-            {
-                sources.Add(ds.Source);
-            }
-
-            List<Post> postModels = new List<Post>();
-            List<PostViewModel> posts = new List<PostViewModel>();
-            foreach (Source source in sources)
-            {
-                postModels = db.Posts
-                    .Where(post => post.SourceId == source.Id)
-                    .ToList();
-                foreach (Post postModel in postModels)
-                {
-                    posts.Add(new PostViewModel(postModel, source));
-                }
-            }
-
-            return Ok(posts
-                .OrderByDescending(post => post.TimePosted));
         }
 
         //TODO: Optimize everything with .Include and .ThenInclude somehow.

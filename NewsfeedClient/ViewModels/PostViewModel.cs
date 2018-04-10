@@ -22,5 +22,14 @@ namespace NewsfeedClient.ViewModels
             Content = post.Content;
             Attachments = post.Attachments;
         }
+
+        public PostViewModel()
+        {
+            Id = -1;
+            TimePosted = DateTime.Today;
+            Source = new SourceViewModel();
+            Content = null;
+            Attachments = null;
+        }
     }
 }
