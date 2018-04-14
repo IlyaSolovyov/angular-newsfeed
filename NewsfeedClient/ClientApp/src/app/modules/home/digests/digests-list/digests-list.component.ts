@@ -25,14 +25,14 @@ export class DigestsListComponent {
 
   ngOnInit() {
     this.currentUserId = this.getUserId();
-    this.fetchData(this.currentUserId); 
+    this.fetchData(this.currentUserId);
   }
 
   getUserId() {
     return localStorage['currentUser'];
   }
 
-  fetchData(userId: number){
+  fetchData(userId: number) {
     this.usersService.getSubscriptionsByUser(userId)
       .subscribe((subscriptions: Digest[]) => {
         this.subscriptions = subscriptions;
@@ -48,10 +48,10 @@ export class DigestsListComponent {
       });
   }
 
-  createDigest(){
+  createDigest() {
     this.newDigestName = '';
 
-    let dialogRef = this.dialog.open(DigestCreationComponent, {
+    const dialogRef = this.dialog.open(DigestCreationComponent, {
       data: { newDigestName: this.newDigestName }
     });
 
@@ -75,6 +75,6 @@ export class DigestsListComponent {
       }
     });
 
-   
+
   }
 }

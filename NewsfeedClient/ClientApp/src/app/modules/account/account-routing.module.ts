@@ -15,7 +15,7 @@ const accountRoutes: Routes = [
     component: AccountComponent,
     children: [
       { path: 'login', component: LoginComponent, canActivate: [AnonymousGuard], },
-      { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard],},
+      { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard], },
       { path: 'register', component: RegisterComponent, canActivate: [AnonymousGuard], },
       { path: '', redirectTo: 'login', pathMatch: 'full'}
     ]

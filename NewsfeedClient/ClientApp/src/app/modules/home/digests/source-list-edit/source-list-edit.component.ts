@@ -53,7 +53,7 @@ export class SourceListEditComponent {
 
     updateSources(trigger: boolean, digestId: number) {
       if (trigger == true) {
-        console.log("Update found!");
+        console.log('Update found!');
         this.fetchSources(digestId);
         this.communicationService.confirmSourcesUpdate();
       }
@@ -61,16 +61,16 @@ export class SourceListEditComponent {
 
     fetchSources(digestId: number) {
       this.digestsService.getDigestData(digestId)
-        .subscribe((digest:Digest) => {
+        .subscribe((digest: Digest) => {
           this.sources = digest.sources;
-        })
+        });
     }
 
     addSource(digestId: number, name: string, service: string, url: string) {
-      console.log("adding source");
+      console.log('adding source');
       this.digestsService.addSourceToDigest(digestId, name, service, url)
         .subscribe((response: string) => {
-          console.log("source added");
+          console.log('source added');
           this.snackBar.open(response, 'Okay', {
             duration: 5000,
           });

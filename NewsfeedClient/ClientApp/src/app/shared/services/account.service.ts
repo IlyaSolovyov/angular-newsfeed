@@ -27,7 +27,7 @@ export class AccountService {
     return this.http.post('/api/account/register', formData, { headers: headers });
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
   }
 

@@ -13,7 +13,7 @@ export class LogoutComponent {
   constructor(private router: Router, private accountService: AccountService) {}
 
   ngOnInit() {
-    this.accountService.logout();    
+    this.accountService.logout();
     setTimeout(() => {
       this.router.navigate(['account/login']);
     }, 3000);

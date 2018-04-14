@@ -1,6 +1,6 @@
 USE NewsfeedDB;
 INSERT dbo.Users(Email, Username, Password, AvatarFilename)
-VALUES ('test-email1@gmail.com', 'Test User 1', 'default_password','avatarPlaceholder.png'),
+VALUES ('admin@gmail.com', 'Admin', 'admin123','avatarPlaceholder.png'),
        ('test-email2@gmail.com', 'Test User 2', 'default_password','avatarPlaceholder.png'),
 	   ('test-email3@gmail.com', 'Test User 3', 'default_password','avatarPlaceholder.png'),
 	   ('test-email4@gmail.com', 'Test User 4', 'default_password','avatarPlaceholder.png'),

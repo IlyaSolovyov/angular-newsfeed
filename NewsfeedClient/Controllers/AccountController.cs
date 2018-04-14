@@ -35,7 +35,7 @@ namespace NewsfeedClient.Controllers
 
             if (loginData.Password != user.Password)
             {
-                return NotFound("Incorrect password");
+                return StatusCode(401, "Incorrect password");
             }
             return Ok(user.Id);
         }
@@ -60,10 +60,10 @@ namespace NewsfeedClient.Controllers
             db.Users.Add(registerData);
             if (db.SaveChanges() != 1)
             {
-                return BadRequest("Something wrong with the database. Please try again in a moment.");
+                return StatusCode(503, "Something wrong with the database. Please try again in a moment.");
             }
             
-            return Ok("Account " + registerData.Username + "is successfully registered.");
+            return Ok("Account " + registerData.Username + " is successfully registered.");
         }
 
         // POST: api/account/5

@@ -41,7 +41,7 @@ export class RegisterComponent {
 
   register(username, email, password) {
     this.accountService.register(username, email, password)
-      .subscribe((response:string) => {
+      .subscribe((response: string) => {
         this.snackBar.open(response, 'Okay', {
           duration: 2000,
         });

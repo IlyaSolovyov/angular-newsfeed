@@ -42,12 +42,12 @@ namespace NewsfeedClient.Controllers
             Digest digest = db.Digests.FirstOrDefault(d => d.Id == digestId);
             if (!digest.IsPublic)
             {
-                return BadRequest("Specified digest is private.");
+                return StatusCode(401, "Specified digest is private.");
             }
 
             if (db.Subscriptions.Any(s => s.DigestId==digestId && s.UserId==userId))
             {
-                return BadRequest("You are already subscribed to specified digest.");
+                return StatusCode (409,"You are already subscribed to specified digest.");
             }
 
             db.Subscriptions.Add(new Subscription { UserId = userId, DigestId = digestId });
@@ -76,7 +76,7 @@ namespace NewsfeedClient.Controllers
 
             if (!db.Subscriptions.Any(s => s.DigestId == digestId && s.UserId == userId))
             {
-                return BadRequest("You aren't subscribed to specified digest.");
+                return StatusCode(409, "You aren't subscribed to specified digest.");
             }
 
             Subscription subscription = db.Subscriptions

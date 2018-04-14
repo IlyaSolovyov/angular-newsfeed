@@ -23,7 +23,7 @@ export class FeedComponent {
     this.postsService.getPostsByDigest(digestId)
       .subscribe((posts: Post[]) => {
         this.posts = posts;
-        console.log("Post count in " + this.digest.name + " digest: " + this.posts.length);
+        console.log('Post count in ' + this.digest.name + ' digest: ' + this.posts.length);
       });
   }
 

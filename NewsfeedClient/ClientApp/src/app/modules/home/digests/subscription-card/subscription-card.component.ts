@@ -35,6 +35,6 @@ export class SubscriptionCardComponent {
           });
 
           this.communicationService.triggerSubscriptionsUpdate();
-        });;
+        });
     }
 }

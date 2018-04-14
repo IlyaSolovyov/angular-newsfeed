@@ -16,8 +16,8 @@ export class SourceCardComponent {
     constructor(private digestsService: DigestsService, private snackBar: MatSnackBar,
       private communicationService: CommunicationService) { }
 
-    removeSource(digestId:number, sourceId: number) {
-      console.log("removing source " + sourceId + " from digest " + digestId)
+    removeSource(digestId: number, sourceId: number) {
+      console.log('removing source ' + sourceId + ' from digest ' + digestId);
       this.digestsService.removeSourceFromDigest(digestId, sourceId)
         .subscribe((response: string) => {
 
@@ -26,6 +26,6 @@ export class SourceCardComponent {
         });
 
         this.communicationService.triggerSourcesUpdate();
-      });;
+      });
     }
 }

@@ -8,7 +8,7 @@ export class AnonymousGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     if (localStorage.getItem('currentUser')) {
-      console.log("Anonymous Guard not passed.");
+      console.log('Anonymous Guard not passed.');
       this.router.navigate(['home']);
       return false;
     }

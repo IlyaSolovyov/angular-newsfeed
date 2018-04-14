@@ -8,8 +8,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  getProfileData(userId: number)
-  {
+  getProfileData(userId: number) {
     return this.http.get<User>('/api/users/' + userId);
   }
 
@@ -23,6 +22,6 @@ export class UsersService {
 
   getFriendsByUser(userId: number) {
     return this.http.get<User[]>('api/users/' + userId + '/friends');
-  } 
+  }
 
 }

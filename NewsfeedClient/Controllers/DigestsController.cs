@@ -46,7 +46,7 @@ namespace NewsfeedClient.Controllers
             db.Digests.Add(digest);
             if (db.SaveChanges() != 1)
             {
-                return BadRequest("Something wrong with the database. Please try again in a moment.");
+                return StatusCode(503,"Something wrong with the database. Please try again in a moment.");
             }
             db.Subscriptions.Add(new Subscription { DigestId = digest.Id, UserId = digest.CreatorId });
             db.SaveChanges();
@@ -79,7 +79,7 @@ namespace NewsfeedClient.Controllers
 
             if (db.DigestSources.Any(ds => ds.DigestId == digestId && ds.SourceId == sourceId))
             {
-                return BadRequest("This digest already contains this source.");
+                return StatusCode(409, "This digest already contains this source.");
             }
 
             db.DigestSources.Add(new DigestSource { DigestId = digest.Id, SourceId = sourceId });
@@ -108,7 +108,7 @@ namespace NewsfeedClient.Controllers
 
             if (!db.DigestSources.Any(ds => ds.DigestId == digestId && ds.SourceId == sourceId))
             {
-                return BadRequest("This digest already doesn't contain this source.");
+                return StatusCode(409,"This digest already doesn't contain this source.");
             }
 
            DigestSource digestSource = db.DigestSources

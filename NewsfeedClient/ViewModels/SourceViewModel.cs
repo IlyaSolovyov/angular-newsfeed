@@ -31,5 +31,13 @@ namespace NewsfeedClient.ViewModels
                     break;
             }
         }
+
+        public SourceViewModel()
+        {
+            Id = -1;
+            Name = null;
+            Service = null;
+            Url = null;
+        }
     }
 }

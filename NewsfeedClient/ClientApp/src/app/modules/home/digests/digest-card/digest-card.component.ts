@@ -16,7 +16,7 @@ import { DigestsService } from '../../../../shared/services/digests.service';
 })
 
 export class DigestCardComponent {
- 
+
     @Input() public digest: Digest;
     public subscribed: boolean;
     currentUserId: number;
@@ -26,7 +26,7 @@ export class DigestCardComponent {
 
     ngOnInit() {
       this.currentUserId = this.getUserId();
-      this.checkForSubscription(this.currentUserId)
+      this.checkForSubscription(this.currentUserId);
       this.communicationService.subscriptionsUpdateNeeded
         .subscribe(result => this.updateSubscription(result, this.currentUserId));
     }
@@ -37,7 +37,7 @@ export class DigestCardComponent {
 
     updateSubscription(trigger: boolean, userId: number) {
       if (trigger == true) {
-        console.log("Update found!");
+        console.log('Update found!');
         this.checkForSubscription(userId);
         this.communicationService.confirmSubscriptionsUpdate();
       }
@@ -47,7 +47,7 @@ export class DigestCardComponent {
 
       this.usersService.getSubscriptionsByUser(this.currentUserId)
         .subscribe((subscriptions: Digest[]) => {
-          this.subscribed= (subscriptions.findIndex((digest) => digest.id == this.digest.id)) != (-1);
+          this.subscribed = (subscriptions.findIndex((digest) => digest.id == this.digest.id)) != (-1);
         });
     }
 
@@ -62,7 +62,7 @@ export class DigestCardComponent {
 
         this.communicationService.triggerSubscriptionsUpdate();
         this.checkForSubscription(userId);
-      });;
+      });
     }
 
     unsubscribe(userId: number) {
@@ -75,13 +75,12 @@ export class DigestCardComponent {
 
           this.communicationService.triggerSubscriptionsUpdate();
           this.checkForSubscription(userId);
-        });;
+        });
     }
 
-    openEditSourcesDialog(digestId: number)
-    {
+    openEditSourcesDialog(digestId: number) {
       let source: Source;
-      let dialogRef = this.dialog.open(SourceListEditComponent, {
+      const dialogRef = this.dialog.open(SourceListEditComponent, {
         data: { digestId: digestId }
       });
 
@@ -90,6 +89,6 @@ export class DigestCardComponent {
           this.digest = updatedDigestData;
         }
 
-      });
+      ); });
     }
 }
