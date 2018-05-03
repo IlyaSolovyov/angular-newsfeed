@@ -58,7 +58,7 @@ Client application for a social network newsfeed service, built with ASP.NET Cor
   *  :heavy_check_mark: **Displaing user digests**:
   *  :heavy_check_mark: **Displaing user subscriptions**:
   *  :heavy_check_mark: **Creating new digests**: 
-  *  :x: **Editing digests**:
+  *  :heavy_check_mark: **Editing digests**:
   *  :x: **Browsing for digests**:
   
 * Server-side: 
@@ -83,6 +83,6 @@ Client application for a social network newsfeed service, built with ASP.NET Cor
 *  :x: **CSS Styles and Themes**:
 *  :x: **Transition to Flex Layout**: 
 *  :heavy_check_mark: **Returning digests created and subscribed to by user**:
-*  :negative_squared_cross_mark: **Azure hosting**
+*  :heavy_check_mark: **Azure hosting**
 
 
