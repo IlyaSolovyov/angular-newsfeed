@@ -5,15 +5,18 @@ Client application for a social network newsfeed service, built with ASP.NET Cor
 * [ASP.NET Core 2.0](https://github.com/aspnet/Home) - Server-side framework
 * [NuGet](https://www.nuget.org/) - Dependency Management
 * [ASP.NET Core 2.0 + Angular 5 VS Project Template RC](https://docs.microsoft.com/en-us/aspnet/core/spa/angular?tabs=visual-studio) - VS Template release candidate, featuring pre-established client-server communication and a list of packaged pre-installed
-* [Angular 5.2.0](https://angular.io/) - Client-side framework
+* [Angular 5.2.4](https://angular.io/) - Client-side framework
+* [Node 9.9.0](https://nodejs.org/) - Javascript runtime environment
 * [npm 5.6.0](https://angular.io/) - Client-side package management
-* [webpack 3.10.0](https://webpack.js.org/) - Client-side bundling and minification
-* [Angular Material 5.2.0](https://material.angular.io/) - Material Design components library
+* [webpack 3.11.0](https://webpack.js.org/) - Client-side bundling and minification
+* [Angular Material 5.2.4](https://material.angular.io/) - Material Design components library
+* [NUnit 3.10.1](https://nunit.org/) - Server-side unit-testing framework.
+* [Moq 4.8.2](https://github.com/moq/moq4/) - Server-side mocking framework.
 
 ## Software used in development
 * [Visual Studio 2017 Community 15.5.6](https://www.visualstudio.com/ru/downloads/) - Main IDE of choice
 * [Visual Studio Code 1.21.0-insiders](https://code.visualstudio.com/) - Lightweight IDE mostly used for editing UI and making quick changes.
-* [Angular CLI 1.6.3](https://cli.angular.io/) - Command Line Interface for updating, installing and serving aid
+* [Angular CLI 1.7.3](https://cli.angular.io/) - Command Line Interface for updating, installing and serving aid
 * [Postman 5.3.2](https://www.getpostman.com/) - API debugging and testing tool
 
 ## Development backlog
